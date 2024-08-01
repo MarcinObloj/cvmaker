@@ -9,56 +9,81 @@
 	</head>
 	<body>
 		<nav class="nav">
-			<button class="hamburger hamburger--spin" type="button">
-				<span class="hamburger-box">
-					<span class="hamburger-inner"></span>
-				</span>
-			</button>
 			
-			<div class="nav__desktop">
-				<div class="nav__desktop-box">
-					<div class="nav__logo">
-						<a href="#" class="nav__logo-text"><img src="./dist/img/logo.svg" alt="Logo" class="nav__logo-img" />Creator<span>CV</span> </a>
+				<button class="hamburger hamburger--spin" type="button">
+					<span class="hamburger-box">
+						<span class="hamburger-inner"></span>
+					</span>
+				</button>
+
+				<div class="nav__desktop">
+					<div class="nav__desktop-box">
+						<div class="nav__logo">
+							<a href="#" class="nav__logo-text"
+								><img
+									src="./dist/img/logo.svg"
+									alt="Logo"
+									class="nav__logo-img" />Creator<span>CV</span>
+							</a>
+						</div>
+						<div class="nav-links">
+							<ul class="nav__desktop-list nav-list">
+								<li class="nav__desktop-item nav-item">
+									<a href="#">Kreator</a>
+								</li>
+								<li class="nav__desktop-item nav-item"><a href="#">Blog</a></li>
+								<li class="nav__desktop-item nav-item "><a href="#" class="faq-item">FAQ</a></li>
+								<li class="nav__desktop-item nav-item login">
+									<a href="#">Logowanie</a>
+								</li>
+								<li class="nav__desktop-item nav-item">
+									<a href="#">Rejestracja</a>
+								</li>
+							</ul>
+						</div>
 					</div>
-					<div class="nav-links">
-						<ul class="nav__desktop-list nav-list">
-							<li class="nav__desktop-item nav-item">
-								<a href="#">Kreator</a>
-							</li>
-							<li class="nav__desktop-item nav-item"><a href="#">Blog</a></li>
-							<li class="nav__desktop-item nav-item"><a href="#">FAQ</a></li>
-							<li class="nav__desktop-item nav-item">
-								<a href="#">Logowanie</a>
-							</li>
-							<li class="nav__desktop-item nav-item">
-								<a href="#">Rejestracja</a>
-							</li>
+				</div>
+				<div class="nav__logo nav__logo-mobile">
+					<a href="#" class="nav__logo-text"
+						><img
+							src="./dist/img/logo.svg"
+							alt="Logo"
+							class="nav__logo-img" />Creator<span>CV</span>
+					</a>
+				</div>
+				<div class="nav__mobile">
+					<div class="nav-links-mobile">
+						<ul class="nav__mobile-list nav-list">
+							<div class="">
+								<li class="nav__mobile-item nav-item">
+									<a href="#">Kreator</a>
+								</li>
+								<li class="nav__mobile-item nav-item"><a href="#">Blog</a></li>
+								<li class="nav__mobile-item nav-item"><a href="#">FAQ</a></li>
+								<li class="nav__mobile-item nav-item">
+									<a href="#">Logowanie</a>
+								</li>
+								<li class="nav__mobile-item nav-item">
+									<a href="#">Rejestracja</a>
+								</li>
+							</div>
 						</ul>
 					</div>
 				</div>
-			</div>
-			<div class="nav__logo nav__logo-mobile">
-				<a href="#" class="nav__logo-text"><img src="./dist/img/logo.svg" alt="Logo" class="nav__logo-img" />Creator<span>CV</span> </a>
-			</div>
-			<div class="nav__mobile">
-				<div class="nav-links-mobile">
-					<ul class="nav__mobile-list nav-list">
-						<div class="">
-							<li class="nav__mobile-item nav-item"><a href="#">Kreator</a></li>
-						<li class="nav__mobile-item nav-item"><a href="#">Blog</a></li>
-						<li class="nav__mobile-item nav-item"><a href="#">FAQ</a></li>
-						<li class="nav__mobile-item nav-item">
-							<a href="#">Logowanie</a>
-						</li>
-						<li class="nav__mobile-item nav-item">
-							<a href="#">Rejestracja</a>
-						</li>
-						</div>
-					</ul>
+			
+				<hr />
+		</nav>
+		<header class="header section-padding">
+			<div class="wrapper">
+				<div class="header__box">
+					<h1 class="header__title">CREATOR CV jest darmowym <span><img src="./dist/img/span.svg" alt="" class="rectangle">narzędziem</span> do tworzenia PRO CV</h1>
+					<p class="header__text">
+						Idealne CV może wyróżnić Cię spośród ogromnej liczby kandydatów i pomóc w osiągnięciu wymarzonej pracy. Rekruterzy patrzą na CV średnio przez 5-7 sekund. CreatorCV jest tutaj, aby pomóc Ci w stworzeniu CV, które przyciągnie uwagę rekruterów od razu.
+					</p>
+					<button class="header-btn btn-primary"> Stwórz CV</button>
 				</div>
 			</div>
-			<hr />
-		</nav>
+		</header>
 		<script src="dist/js/main.min.js"></script>
 	</body>
 </html>
