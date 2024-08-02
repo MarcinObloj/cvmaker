@@ -71,6 +71,10 @@ body {
 .section-padding {
 	padding: 6em 2em;
 }
+.section-heading{
+	margin-bottom: 2em;
+	text-transform: uppercase;
+}
 .btn-primary {
 	display: flex;
 	justify-content: center;
@@ -446,6 +450,10 @@ body {
 	}
 }
 @media (width >= 768px) {
+	.section-heading{
+		font-size: 3.2rem;
+		text-align: center;
+	}
 	.offer {
 		&__box {
 			&-title {
@@ -664,6 +672,9 @@ body {
 }
 
 @media (width >= 1200px) {
+	.section-heading{
+		font-size: 4.2rem;
+	}
 	.nav {
 		font-size: 2.4rem;
 	}
