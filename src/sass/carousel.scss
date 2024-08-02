@@ -78,6 +78,11 @@
     height: 400px;
     object-fit: cover;
 }
+.image-item{
+    border-top-left-radius: 16px;
+    border-top-right-radius: 16px;
+    overflow: hidden;
+}
 
 .slider-wrapper .image-list .image-title {
     position: absolute;
@@ -88,6 +93,7 @@
     background: rgba(0, 0, 0, 0.5);
     padding: 10px;
     font-size: 1.2rem;
+    overflow: hidden;
 }
 
 .container .slider-scrollbar {
