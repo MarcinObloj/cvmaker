@@ -53,6 +53,16 @@ body {
 	font-size: 1.6rem;
 	// overflow: hidden;
 }
+@keyframes move-right {
+	to {
+		rotate: 360deg;
+	}
+}
+@keyframes move-left {
+	to {
+		rotate: -360deg;
+	}
+}
 .wrapper {
 	margin: 0 auto;
 	max-width: 1200px;
@@ -75,6 +85,26 @@ body {
 	transition: background-color 0.3s;
 	&:hover {
 		background-color: #d5a84c;
+	}
+}
+.btn-secondary {
+	position: absolute;
+
+	left: 50%;
+	transform: translate(-50%, -50%);
+	text-decoration: none;
+	color: $colorPrimary500;
+	font-weight: bold;
+
+	background-color: transparent transparent;
+	padding: 1em 2em;
+	border-radius: 16px;
+	border: 3px solid $colorPrimary500;
+	margin-top: 3em;
+	transition: color 0.3s, border 0.3s;
+	&:hover {
+		color: #fec85b;
+		border: 3px solid #fec85b;
 	}
 }
 
@@ -273,8 +303,7 @@ body {
 		@include HeadingH2Phone;
 		margin-bottom: 2em;
 	}
-	&__boxes {
-	}
+
 	&__box {
 		background: var(--bg-color-500, #eee);
 		padding: 1em;
@@ -315,13 +344,105 @@ body {
 	&__box:hover {
 		scale: 1.05;
 	}
-	.box-two{
+	.box-two {
 		display: none;
+	}
+}
+.threeSteps {
+	&-heading {
+		text-transform: uppercase;
+		margin-bottom: 1em;
+	}
+	&__top-box {
+		background-color: #d9d9d9;
+
+		overflow: hidden;
+	}
+	.first-step {
+		border-top-left-radius: 16px;
+		border-top-right-radius: 16px;
+	}
+	&__btn {
+		width: 100%;
+		text-align-last: left;
+		padding: 1em 2em;
+		background-color: #d9d9d9;
+		color: var(--primary-200, #8c8f94);
+		font-weight: bold;
+	}
+	.active {
+		background-color: #ffffff;
+		color: var(--primary-500, #222831);
+		transition: background-color 0.5s;
+	}
+	.active ~ hr {
+		height: 5px;
+		background-color: #222831;
+	}
+	&__bottom-box {
+		background-color: #fff;
+		padding: 1em 2em;
+	}
+	&__bottom-text {
+		h3 {
+			margin: 1em 0;
+		}
+	}
+	.threeSteps__bottom-box {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		opacity: 0;
+		transition: opacity 0.5s ease-in-out;
+		overflow: hidden;
+	}
+	.active-box {
+		opacity: 1;
+		position: relative; /* Pozostaje względny, aby zachować układ */
+	}
+	.threeSteps__bottom-boxes {
+		position: relative;
+		width: 100%;
+	}
+}
+.blog {
+	position: relative;
+	background-color: #d7d7d7;
+	// padding-bottom: 20em;
+	&-heading {
+		text-transform: uppercase;
+		margin-bottom: 0.5em;
+	}
+	&-icon {
+		position: relative;
+		width: 40%;
+		max-width: 150px;
+		bottom: -70%;
+		left: 50%;
+		transform: translate(-50%, 70%);
 	}
 }
 @media (width >= 568px) {
 	.offer__box-title {
 		margin-top: 5em;
+	}
+	.blog {
+		position: relative;
+		background-color: #d7d7d7;
+		// padding-bottom: 20em;
+		&-heading {
+			text-transform: uppercase;
+			margin-bottom: 0.5em;
+		}
+		&-icon {
+			position: relative;
+			width: 40%;
+			max-width: 200px;
+			bottom: -50%;
+			left: 50%;
+			transform: translate(-50%, 50%);
+		}
 	}
 }
 @media (width >= 768px) {
@@ -336,6 +457,9 @@ body {
 		padding: 1.5rem 3rem;
 	}
 	.opinions {
+		&__heading {
+			font-size: 3.2rem;
+		}
 		.linear-circle {
 			position: absolute;
 			width: 47.6rem;
@@ -364,18 +488,78 @@ body {
 				)
 			);
 		}
-		&__boxes{
+		&__box-info {
+			font-size: 2rem;
+		}
+		&__boxes {
 			display: flex;
 			justify-content: center;
 			// align-items: stretch;
 			gap: 2em;
 		}
-		&__box{
+		&__box {
 			flex: 1 1 30%; /* Każda karta zajmuje około 30% szerokości kontenera */
-    // max-width: 30%;
+			// max-width: 30%;
+		}
+	}
+	.threeSteps {
+		&-heading {
+			font-size: 3.2rem;
+			text-align: center;
+		}
+		&-info {
+			font-size: 2rem;
+			text-align: center;
+		}
+		&__btn {
+			font-size: 2rem;
+		}
+		&__top-boxes {
+			display: flex;
+			justify-content: space-between;
+		}
+		&__top-box {
+			width: 30%;
+			border-top-left-radius: 16px;
+			border-top-right-radius: 16px;
+		}
+		&__bottom-box {
+			display: flex;
+			align-items: center;
+			gap: 2em;
+		}
+		&__bottom-text {
+			width: 40%;
+			font-size: 1.8rem;
+		}
+	}
+	.blog {
+		text-align: center;
+		z-index: 1;
+		.btn-secondary {
+			font-size: 2rem;
+		}
+		&-heading {
+			font-size: 3.2rem;
+		}
+		&-info {
+			font-size: 2rem;
+		}
+		.circle-animation {
+			position: absolute;
+			border-radius: 50%;
+			background: transparent;
+			border: 5px dashed rgba(34, 40, 49, 0.184);
+			z-index: -1;
+		}
+		.left {
+			left: -10%;
+			animation: move-right 60s linear infinite;
+			padding: 10em;
 		}
 	}
 }
+
 @media (width >= 992px) {
 	.hamburger {
 		display: none;
@@ -477,7 +661,6 @@ body {
 			}
 		}
 	}
-	
 }
 
 @media (width >= 1200px) {
@@ -492,9 +675,12 @@ body {
 			font-size: 2.4rem;
 		}
 	}
-	.btn-primary {
-		font-size: 2rem;
+	.btn-primary,
+	.btn-secondary {
+		font-size: 2.4rem;
+		padding: 1em 2.5em;
 	}
+
 	.offer {
 		&__box {
 			&-title {
@@ -534,11 +720,66 @@ body {
 			}
 		}
 	}
-	.opinions{
-		&__boxes{
-			.box-two{
+	.opinions {
+		&__heading {
+			font-size: 4.2rem;
+		}
+		&__boxes {
+			.box-two {
 				display: block;
 			}
+		}
+	}
+	.threeSteps {
+		&-heading {
+			font-size: 4.2rem;
+		}
+		&-info {
+			font-size: 2.4rem;
+		}
+		&__btn {
+			font-size: 2.4rem;
+		}
+
+		&__bottom-box {
+			display: flex;
+			justify-content: space-between;
+			gap: 2em;
+		}
+		&__bottom-text {
+			width: 70%;
+			font-size: 2rem;
+			h3 {
+				font-size: 2.8rem;
+			}
+		}
+	}
+	.blog {
+		&-heading {
+			font-size: 4.2rem;
+		}
+		&-info {
+			font-size: 2.4rem;
+		}
+		&-icon {
+			position: relative;
+			width: 40%;
+			max-width: 300px;
+			bottom: -30%;
+			left: 30%;
+			transform: translate(-30%, 30%);
+		}
+.btn-secondary{
+	font-size: 2.4rem;
+}
+		.circle-animation {
+			padding: 15em;
+		}
+		.right {
+			padding: 5rem;
+			right: 0;
+			top: -10%;
+			animation: move-left 80s linear infinite;
 		}
 	}
 }
