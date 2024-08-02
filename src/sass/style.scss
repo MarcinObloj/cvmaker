@@ -806,6 +806,7 @@ body {
 		}
 	}
 	.blog {
+		overflow: hidden;
 		&-heading {
 			font-size: 4.2rem;
 		}
@@ -828,8 +829,8 @@ body {
 		}
 		.right {
 			padding: 5rem;
-			right: 0;
-			top: -10%;
+			right: -3%;
+			top: 3%;
 			animation: move-left 80s linear infinite;
 		}
 	}
