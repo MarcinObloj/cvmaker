@@ -1,58 +1,7 @@
 @use './colors' as *;
-*,
-*::after,
-*::before {
-	box-sizing: border-box;
-	margin: 0;
-	padding: 0;
-}
+@use './nav' as *;
+@use './reset' as *;
 
-html,
-body {
-	height: 100%;
-	overflow: auto;
-}
-
-html {
-	font-size: 62.5%;
-	scroll-behavior: smooth;
-}
-
-a {
-	text-decoration: none;
-}
-
-img {
-	height: auto;
-}
-
-input,
-button,
-textarea,
-select {
-	font-family: inherit;
-}
-
-button {
-	border: none;
-	cursor: pointer;
-}
-
-textarea {
-	resize: vertical;
-}
-
-table {
-	border-collapse: collapse;
-	border-spacing: 0;
-}
-body {
-	background-color: $colorBgColor500;
-	font-family: 'Poppins', sans-serif;
-	color: $colorPrimary500;
-	font-size: 1.6rem;
-	// overflow: hidden;
-}
 @keyframes move-right {
 	to {
 		rotate: 360deg;
@@ -63,159 +12,9 @@ body {
 		rotate: -360deg;
 	}
 }
-.wrapper {
-	margin: 0 auto;
-	max-width: 1200px;
-	width: 100%;
-}
-.section-padding {
-	padding: 6em 2em;
-}
-.section-heading {
-	margin-bottom: 2em;
-	text-transform: uppercase;
-}
-.btn-primary {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	padding: 1rem 2rem;
-	border-radius: 1.6em;
-	// width: 30%;
-	background: var(--btn-background-500, #fec85b);
-	text-align: center;
-	font-weight: bold;
-	margin: 2.5em auto;
-	transition: background-color 0.3s;
-	&:hover {
-		background-color: #d5a84c;
-	}
-}
-.btn-secondary {
-	position: absolute;
 
-	left: 50%;
-	transform: translate(-50%, -50%);
-	text-decoration: none;
-	color: $colorPrimary500;
-	font-weight: bold;
 
-	background-color: transparent transparent;
-	padding: 1em 2em;
-	border-radius: 16px;
-	border: 3px solid $colorPrimary500;
-	margin-top: 3em;
-	transition: color 0.3s, border 0.3s;
-	&:hover {
-		color: #fec85b;
-		border: 3px solid #fec85b;
-	}
-}
 
-.nav,
-.footer {
-	background: rgba(246, 246, 246, 0.6);
-	// padding: 2em;
-	position: sticky;
-	top: 0;
-	z-index: 100;
-	width: 100%;
-	a {
-		color: $colorPrimary500;
-		span {
-			color: #00767b;
-			font-weight: bold;
-		}
-	}
-	&__logo {
-		padding: 2em;
-
-		&-text {
-			display: inline-flex;
-			align-items: center;
-		}
-		&-img {
-			margin-right: 0.3em;
-		}
-	}
-	&-list {
-		list-style: none;
-		text-align: center;
-	}
-	&__mobile {
-		position: absolute;
-		top: 0;
-		left: 0;
-		right: 0;
-		bottom: 0;
-		z-index: 100;
-		transform: translateX(-102%);
-		transition: transform 0.3s;
-		&--active {
-			transform: translateX(0);
-		}
-
-		&-list {
-			div {
-				display: flex;
-				justify-content: center;
-				align-items: center;
-				height: 100vh;
-				flex-direction: column;
-				gap: 3em;
-				z-index: 100;
-				background-color: #fff;
-			}
-		}
-	}
-	&-item {
-		a {
-			// margin: 2em 1em;
-			padding: 1em 0.5em;
-			position: relative;
-		}
-		a::after {
-			position: absolute;
-			bottom: 0;
-			left: 50%;
-			transform: translate(-50%);
-			width: 0%;
-			background-color: $colorPrimary500;
-			height: 0px;
-			content: '';
-			transition: 0.3s;
-		}
-		a:hover::after {
-			height: 2px;
-			width: 100%;
-		}
-	}
-
-	hr {
-		width: 100%;
-	}
-
-	&__desktop {
-		display: none;
-	}
-}
-.footer{
-	&--mobile-box{
-		display: flex;
-		justify-content: space-between;
-		align-items: center;
-	}
-	&--mobile-social-media-box{
-		padding: 2em;
-		a{
-			margin-right: 0.5em;
-		}
-	}
-	&--mobile-copyright{
-		text-align: center;
-		padding-bottom: 2em;
-	}
-}
 .hamburger {
 	position: absolute;
 	top: 3em;
@@ -323,7 +122,6 @@ body {
 	z-index: 1;
 	&__heading {
 		@include HeadingH2Phone;
-		margin-bottom: 2em;
 	}
 
 	&__box {
@@ -371,10 +169,6 @@ body {
 	}
 }
 .threeSteps {
-	&-heading {
-		text-transform: uppercase;
-		margin-bottom: 1em;
-	}
 	&__top-box {
 		background-color: #d9d9d9;
 
@@ -432,10 +226,7 @@ body {
 	position: relative;
 	background-color: #d7d7d7;
 	// padding-bottom: 20em;
-	&-heading {
-		text-transform: uppercase;
-		margin-bottom: 0.5em;
-	}
+
 	&-icon {
 		position: relative;
 		width: 40%;
@@ -453,10 +244,7 @@ body {
 		position: relative;
 		background-color: #d7d7d7;
 		// padding-bottom: 20em;
-		&-heading {
-			text-transform: uppercase;
-			margin-bottom: 0.5em;
-		}
+
 		&-icon {
 			position: relative;
 			width: 40%;
@@ -483,9 +271,6 @@ body {
 		padding: 1.5rem 3rem;
 	}
 	.opinions {
-		&__heading {
-			font-size: 3.2rem;
-		}
 		.linear-circle {
 			position: absolute;
 			width: 47.6rem;
@@ -529,10 +314,6 @@ body {
 		}
 	}
 	.threeSteps {
-		&-heading {
-			font-size: 3.2rem;
-			text-align: center;
-		}
 		&-info {
 			font-size: 2rem;
 			text-align: center;
@@ -565,9 +346,7 @@ body {
 		.btn-secondary {
 			font-size: 2rem;
 		}
-		&-heading {
-			font-size: 3.2rem;
-		}
+
 		&-info {
 			font-size: 2rem;
 		}
@@ -590,39 +369,7 @@ body {
 	.hamburger {
 		display: none;
 	}
-	.nav,
-	.footer {
-		font-size: 2rem;
-
-		&__desktop {
-			display: block;
-			&-box {
-				display: flex;
-				justify-content: space-between;
-				align-items: center;
-			}
-			&-list {
-				display: flex;
-				a {
-					margin-right: 1.87em;
-					padding: 0.5em;
-				}
-			}
-			&-item {
-				a {
-					// margin: 2em 1em;
-				}
-			}
-		}
-		.faq-item {
-			padding-right: 2em;
-
-			border-right: 1px solid $colorPrimary500;
-		}
-	}
-	.nav__logo-mobile {
-		display: none;
-	}
+	
 
 	.header {
 		&__box {
@@ -689,35 +436,14 @@ body {
 			}
 		}
 	}
-	.footer {
-		&__desktop__bottom-box {
-			padding: 0 2em 1em 2em;
-			display: flex;
-			width: 80%;
-			justify-content: space-between;
-			align-items: center;
-			
-		}
-		&__desktop-social-media-box{
-			a{
-				margin-right: 1em;
-				
-			}
-		}
-		&--mobile{
-			display: none;
-		}
-	}
+	
 }
 
 @media (width >= 1200px) {
 	.section-heading {
 		font-size: 4.2rem;
 	}
-	.nav,
-	.footer {
-		font-size: 2.4rem;
-	}
+	
 	.header {
 		&__title {
 			font-size: 5.4rem;
@@ -772,9 +498,6 @@ body {
 		}
 	}
 	.opinions {
-		&__heading {
-			font-size: 4.2rem;
-		}
 		&__boxes {
 			.box-two {
 				display: block;
@@ -782,9 +505,6 @@ body {
 		}
 	}
 	.threeSteps {
-		&-heading {
-			font-size: 4.2rem;
-		}
 		&-info {
 			font-size: 2.4rem;
 		}
@@ -807,9 +527,7 @@ body {
 	}
 	.blog {
 		overflow: hidden;
-		&-heading {
-			font-size: 4.2rem;
-		}
+
 		&-info {
 			font-size: 2.4rem;
 		}

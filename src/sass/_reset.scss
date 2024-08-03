@@ -1,0 +1,107 @@
+@use './colors' as *;
+*,
+*::after,
+*::before {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+
+html,
+body {
+	height: 100%;
+	overflow: auto;
+}
+
+html {
+	font-size: 62.5%;
+	scroll-behavior: smooth;
+}
+
+a {
+	text-decoration: none;
+}
+
+img {
+	height: auto;
+}
+
+input,
+button,
+textarea,
+select {
+	font-family: inherit;
+}
+
+button {
+	border: none;
+	cursor: pointer;
+}
+
+textarea {
+	resize: vertical;
+}
+
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+body {
+	background-color: $colorBgColor500;
+	font-family: 'Poppins', sans-serif;
+	color: $colorPrimary500;
+	font-size: 1.6rem;
+	// overflow: hidden;
+}
+.wrapper {
+	margin: 0 auto;
+	max-width: 1200px;
+	width: 100%;
+}
+.section-padding {
+	padding: 6em 2em;
+}
+.section-heading {
+	margin-bottom: 1em;
+	text-transform: uppercase;
+}
+.btn-primary {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding: 1rem 2rem;
+	border-radius: 1.6em;
+	// width: 30%;
+	background: var(--btn-background-500, #fec85b);
+	text-align: center;
+	font-weight: bold;
+	margin: 2.5em auto;
+	transition: background-color 0.3s;
+	&:hover {
+		background-color: #d5a84c;
+	}
+}
+.btn-secondary {
+	position: absolute;
+
+	left: 50%;
+	transform: translate(-50%, -50%);
+	text-decoration: none;
+	color: $colorPrimary500;
+	font-weight: bold;
+
+	background-color: transparent transparent;
+	padding: 1em 2em;
+	border-radius: 16px;
+	border: 3px solid $colorPrimary500;
+	margin-top: 3em;
+	transition: color 0.3s, border 0.3s;
+	&:hover {
+		color: #fec85b;
+		border: 3px solid #fec85b;
+	}
+}
+
+.section-heading {
+	text-transform: uppercase;
+}
