@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CVMaker-register</title>
+    <title>CVMaker</title>
     <link rel="stylesheet" href="./dist/css/register.min.css">
     <script src="https://kit.fontawesome.com/11fe5cd726.js" crossorigin="anonymous"></script>
 </head>
@@ -22,17 +22,13 @@
 
 
 
-    <main>
+    <main class="reset">
         <div class="wrapper">
             <div class="form-box">
-                <h2 class="form-heading">ZAREJESTRUJ SIĘ</h2>
-                <p class="form-info">Zacznij tworzyć CV za darmo!</p>
+                <h2 class="form-heading">ZAPOMNIAŁES HASŁA?</h2>
+                <p class="form-info">Zresetuj swoje hasło w minutę!</p>
                 <form>
-                    <div class="form-group">
-                        <label for="username"  class="form-group-label">Nazwa użytkownika</label>
-                        <input type="text" id="username" name="username" placeholder="Username123" class="form-group-input">
-                        <i class="fa fa-user"></i>
-                    </div>
+                  
                     
                     <div class="form-group">
                         <label for="email" class="form-group-label">Email</label>
@@ -40,16 +36,14 @@
                         <i class="fa fa-envelope"></i>
                     </div>
                     
-                    <div class="form-group">
-                        <label for="password" class="form-group-label">Hasło</label>
-                        <input type="password" id="password" name="password" placeholder="Hasło#123" class="form-group-input">
-                        <i class="fa fa-lock"></i>
-                    </div>
-                    
-                    <button type="submit" class="btn-primary">Zarejestruj się</button>
+                   
+                   <div class="button-box">
+                    <button type="submit" class="btn-back"><i class="fa-solid fa-arrow-left"></i> Wróć do logowania </button>
+                    <button type="submit" class="btn-primary reset-btn">Zarejestruj się</button>
+                   </div>
                 </form>
                 
-                <p class="form-info">Masz już konto? <a href="login.html">Zaloguj się</a></p>
+                <p class="form-info">Nie masz jeszcze konta? <a href="login.html">Zarejestruj się</a></p>
                 
             </div>
         </div>

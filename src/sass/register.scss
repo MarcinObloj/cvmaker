@@ -3,12 +3,20 @@
 @use './reset' as *;
 
 main {
-	padding: 4em 0;
-	height: 80vh;
+	// padding: 4em 0;
+	height: 100vh;
 	display: flex;
 	justify-content: center;
 	align-items: center;
 }
+.reset {
+	height: 70vh;
+}
+.login{
+	height: 90vh;
+}
+
+
 .form-box {
 	background-color: #fff;
 	padding: 4em 2em;
@@ -16,30 +24,59 @@ main {
 	margin: 0 auto;
 	box-shadow: 0px 2px 8px 0px rgba(0, 62, 65, 0.3);
 	width: 70%;
+	.btn-primary {
+		width: 100%;
+	}
+	.btn-back {
+		width: 100%;
+		
+	}
+	.reset-btn {
+		margin-top: 0.5em;
+	}
+	.fa-solid {
+		opacity: 0;
+		transition: opacity .3s,transform .3s;
+		
+	}
+	.btn-back:hover .fa-solid {
+		transform: translateX(-20px);
+		opacity: 1;
+	}
+	.form-reset {
+		display: block;
+		text-align: right;
+		color: $colorButton500;
+		transition: color 0.3s;
+		&:hover {
+			color: $colorButton700;
+		}
+	}
 	.form-heading,
-	p {
+	.form-info {
 		text-align: center;
 	}
 	.form-heading {
 		margin-bottom: 0.1em;
 	}
-	p {
+	.form-info {
 		margin-bottom: 1em;
 		color: var(--primary-300, #696d73);
 	}
 	.form-group {
 		position: relative;
 		margin-bottom: 1em;
+		&-label {
+			display: block;
+			margin-bottom: 0.5em;
+		}
+		&-input {
+			width: 100%;
+			padding: 0.8em 3em;
+			border-radius: 16px;
+		}
 	}
-	label {
-		display: block;
-		margin-bottom: 0.5em;
-	}
-	input {
-		width: 100%;
-		padding: 0.8em 3em;
-		border-radius: 16px;
-	}
+
 	.fa {
 		position: absolute;
 		left: 15px;
@@ -47,24 +84,31 @@ main {
 		font-size: 2rem;
 		color: var(--primary-300, #696d73);
 	}
-	a {
-		color: #222831;
-		font-weight: bold;
-		transition: color 0.3s;
-		&:hover {
-			color: #0a0b0b;
+	.form-info {
+		a {
+			color: #222831;
+			font-weight: bold;
+			transition: color 0.3s;
+			&:hover {
+				color: #0a0b0b;
+			}
 		}
 	}
-	.btn-primary {
-		width: 100%;
+	
+}
+@media (width >= 568px) {
+	main {
+		height: 80vh;
 	}
 }
-
 @media (width >= 992px) {
+	main {
+		height: 100vh;
+	}
 	a,
-	p,
-	input,
-	label {
+	.form-group-label,
+	.form-group-input,
+	.form-info {
 		font-size: 2rem;
 	}
 	.form-heading {
@@ -77,6 +121,21 @@ main {
 			top: 45px;
 			font-size: 3rem;
 			color: var(--primary-300, #696d73);
+		}
+		.fa-solid {
+			font-size: 2.5rem;
+			// margin-right: 1.5em;
+		}
+	}
+	form {
+		.button-box {
+			display: flex;
+			gap: 1em;
+			margin: 2em 0;
+			.btn-primary {
+				margin: 0;
+
+			}
 		}
 	}
 }

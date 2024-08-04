@@ -70,7 +70,7 @@ body {
 	justify-content: center;
 	align-items: center;
 	padding: 1rem 2rem;
-	border-radius: 1.6em;
+	border-radius: 1.6rem;
 	// width: 30%;
 	background: var(--btn-background-500, #fec85b);
 	text-align: center;
@@ -83,13 +83,11 @@ body {
 }
 .btn-secondary {
 	position: absolute;
-
 	left: 50%;
 	transform: translate(-50%, -50%);
 	text-decoration: none;
 	color: $colorPrimary500;
 	font-weight: bold;
-
 	background-color: transparent transparent;
 	padding: 1em 2em;
 	border-radius: 16px;
@@ -101,8 +99,13 @@ body {
 		border: 3px solid #fec85b;
 	}
 }
-
+.btn-back {
+	border-radius: 1rem;
+	border: 3px solid var(--primary-700, #171b21);
+	padding: 1rem 2rem;
+	background: transparent;
+	font-weight: bold;
+}
 .section-heading {
 	text-transform: uppercase;
 }
-
