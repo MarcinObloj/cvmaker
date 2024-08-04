@@ -1,0 +1,170 @@
+@use './colors' as *;
+@use './nav' as *;
+@use './reset' as *;
+
+.dashboard {
+	display: flex;
+	/* justify-content: center; */
+	position: sticky;
+	top: 0;
+	flex-direction: column;
+	align-items: center;
+	width: 30%;
+	height: 100vh;
+	padding: 5em 4em;
+	background-color: #fff;
+	border-right: 1px solid rgba(58, 48, 48, 0.6);
+
+	.account-box {
+		text-align: center;
+		margin: 4em 0;
+		.account-img {
+			width: 80px;
+		}
+	}
+	.account-buttons {
+		display: flex;
+		flex-direction: column;
+		gap: 1em;
+		.account-button {
+			padding: 1em 2em;
+			border-radius: 16px;
+			color: $colorPrimary300;
+			background-color: transparent;
+			transition: background-color 0.3s;
+			font-size: 1.6rem;
+			&:hover {
+				background-color: #ededed;
+			}
+			span {
+				display: none;
+			}
+		}
+
+		.active {
+			color: $colorBtnBackground800;
+			background-color: rgba(254, 200, 91, 0.1);
+		}
+	}
+}
+.dashboard-box {
+	display: flex;
+	.main {
+		padding: 6em 2em 0 2em;
+		&-heading {
+			text-transform: uppercase;
+			font-weight: lighter;
+			font-size: 2.8rem;
+			span {
+				font-weight: bold;
+			}
+		}
+		&-info {
+			color: rgba(105, 109, 115, 1);
+			font-size: 1.4rem;
+			margin-bottom: 2em;
+		}
+
+		
+}
+}
+.cv__box {
+	
+
+	&-photo {
+		width: 100%;
+	}
+}
+
+
+
+@media (min-width: 768px) {
+	.dashboard {
+		.account-buttons {
+			.account-button {
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				gap: 0.5em;
+				span {
+					display: block;
+				}
+			}
+		}
+	}
+}
+
+@media (min-width: 992px) {
+	.dashboard {
+		width: 25%;
+	}
+	.account-box,
+	.account-button {
+		font-size: 2rem;
+	}
+	.account-button .fa-solid {
+		margin-right: 0.1em;
+	}
+	.dashboard-box {
+		.main {
+			&-heading {
+				font-size: 3.2rem;
+			}
+			&-info {
+				font-size: 1.8rem;
+			}
+		}
+	}
+	.dashboard {
+		.account-buttons {
+			.account-button {
+				font-size: 2rem;
+			}
+		}
+	}
+	.cv__boxes {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 1em; 
+		.cv__box {
+			width: calc(
+				50% - 0.5em
+			); 
+			margin-bottom: 1em; 
+
+			
+		}
+	}
+
+}
+
+@media (min-width: 1200px) {
+	.dashboard {
+		width: 20%;
+	}
+	.account-box,
+	.account-button {
+		font-size: 2.4rem;
+	}
+	.dashboard-box {
+		.main {
+			&-heading {
+				font-size: 4.2rem;
+			}
+			&-info {
+				font-size: 2rem;
+			}
+		}
+	}
+	.cv__boxes {
+		
+		.cv__box {
+			width: calc(
+				33% - 0.5em
+			); // Adjust the width to fit two boxes in a row, subtracting the gap
+			
+
+			
+		}
+	}
+}

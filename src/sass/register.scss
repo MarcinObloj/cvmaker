@@ -9,13 +9,6 @@ main {
 	justify-content: center;
 	align-items: center;
 }
-.reset {
-	// height: 70vh;
-}
-.login{
-	// height: 90vh;
-}
-
 
 .form-box {
 	background-color: #fff;
@@ -29,15 +22,13 @@ main {
 	}
 	.btn-back {
 		width: 100%;
-		
 	}
 	.reset-btn {
 		margin-top: 0.5em;
 	}
 	.fa-solid {
 		opacity: 0;
-		transition: opacity .3s,transform .3s;
-		
+		transition: opacity 0.3s, transform 0.3s;
 	}
 	.btn-back:hover .fa-solid {
 		transform: translateX(-20px);
@@ -94,12 +85,8 @@ main {
 			}
 		}
 	}
-	
 }
 @media (width >= 568px) {
-	main {
-		// height: 80vh;
-	}
 }
 @media (width >= 992px) {
 	main {
@@ -134,7 +121,6 @@ main {
 			margin: 2em 0;
 			.btn-primary {
 				margin: 0;
-
 			}
 		}
 	}
