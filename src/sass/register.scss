@@ -3,17 +3,17 @@
 @use './reset' as *;
 
 main {
-	// padding: 4em 0;
-	height: 100vh;
+	padding: 6em 0;
+	// height: 100vh;
 	display: flex;
 	justify-content: center;
 	align-items: center;
 }
 .reset {
-	height: 70vh;
+	// height: 70vh;
 }
 .login{
-	height: 90vh;
+	// height: 90vh;
 }
 
 
@@ -98,12 +98,12 @@ main {
 }
 @media (width >= 568px) {
 	main {
-		height: 80vh;
+		// height: 80vh;
 	}
 }
 @media (width >= 992px) {
 	main {
-		height: 100vh;
+		height: 80vh;
 	}
 	a,
 	.form-group-label,
