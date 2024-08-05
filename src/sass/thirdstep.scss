@@ -1,0 +1,115 @@
+@use './colors' as *;
+@use './nav' as *;
+@use './reset' as *;
+
+.main {
+	padding: 2em;
+    text-align: center;
+    height: 80vh;
+    position: relative;
+   
+	
+	.third__step-box {
+		margin-bottom: 1em;
+		display: flex;
+		flex: 1 0 0;
+		// justify-content: center;
+		align-items: center;
+		gap: 1em;
+		color: rgba(140, 143, 148, 1);
+		&-number {
+			position: relative;
+			border-radius: 50%;
+			width: 25px;
+			height: 25px;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			background: rgba(193, 195, 197, 1);
+		}
+		&-active > .third__step-box-number {
+			background-color: rgba(254, 200, 91, 1);
+		}
+		&-active {
+			color: rgba(34, 40, 49, 1);
+		}
+		
+		hr {
+			display: none;
+		}
+	}
+    .congrats-heading{
+        margin: 4em 0;
+    }
+    .congrats-btns{
+        font-size: 1.6rem;
+        font-weight: bold;
+        .btn-userpanel{
+            border: 3px solid $colorPrimary500;
+            color: $colorPrimary500;
+            display: inline-block;
+            padding: 1em 2em;
+            width: 40%;
+            border-radius: 16px;
+            margin: 2em ;
+            text-align: center;
+            transition:color .3s, border .3s;
+            &:hover{
+                color: $colorBtnBackground500;
+                border:3px solid $colorBtnBackground500;
+            }
+        }
+    }
+    .confetti{
+        position: absolute;
+        left: 50%;
+        transform: translate(-50%);
+        top: 150px;
+        z-index: -1;
+        width: 100%;
+        max-width: 1200px;
+    }
+}
+@media (width >= 568px) {
+	.third__step-boxes {
+		display: flex;
+		justify-content: center;
+		gap: 1em;
+	}
+}
+@media (width >= 992px) {
+	.third__step-boxes,
+	.main .congrats-btns {
+		font-size: 2rem;
+	}
+	.main {
+		.third__step-box {
+			&-number {
+				width: 40px;
+				height: 40px;
+			}
+		}
+		.congrats-heading {
+			font-size: 3.2rem;
+		}
+        .congrats-btns{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .confetti{
+            top: 5%;
+        }
+	}
+}
+@media (width >= 1200px) {
+	.third__step-boxes,
+	.main .congrats-btns {
+		font-size: 2.4rem;
+	}
+	.main {
+		.congrats-heading {
+			font-size: 4.2rem;
+		}
+	}
+}

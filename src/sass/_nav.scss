@@ -123,16 +123,16 @@
 		padding-bottom: 2em;
 	}
 }
-@media (width >= 768px) {
-	.btn-primary {
-		padding: 1.5rem 3rem;
-	}
-}
+// @media (width >= 768px) {
+// 	.btn-primary {
+// 		padding: 1.5rem 3rem;
+// 	}
+// }
 @media (width >= 992px) {
-	.btn-primary,.btn-back{
-		font-size: 2rem;
-		padding: 1.6rem 3.2rem;
-	}
+	// .btn-primary,.btn-back{
+	// 	font-size: 2rem;
+	// 	padding: 1.6rem 3.2rem;
+	// }
 	.nav__blog,.nav__logo-text {
 		font-size: 2rem;
 	}
@@ -184,11 +184,7 @@
 	}
 }
 @media (width >= 1200px) {
-	.btn-primary,.btn-back,
-	.btn-secondary {
-		font-size: 2.4rem;
-		// padding: 2em 2.5em;
-	}
+	
 	.nav,
 	.footer,
 	.nav__blog {

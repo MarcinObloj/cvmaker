@@ -66,16 +66,17 @@ body {
 	text-transform: uppercase;
 }
 .btn-primary {
+	font-size: 1.6rem;
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	padding: 1rem 2rem;
+	padding: 1em 2em;
 	border-radius: 1.6rem;
 	width: 40%;
 	background: var(--btn-background-500, #fec85b);
 	text-align: center;
 	font-weight: bold;
-	margin: 2.5em auto;
+	margin: 2em auto;
 	transition: background-color 0.3s;
 	&:hover {
 		background-color: #d5a84c;
@@ -90,6 +91,7 @@ body {
 	font-weight: bold;
 	background-color: transparent transparent;
 	padding: 1em 2em;
+	width: 40%;
 	border-radius: 16px;
 	border: 3px solid $colorPrimary500;
 	margin-top: 3em;
@@ -108,4 +110,19 @@ body {
 }
 .section-heading {
 	text-transform: uppercase;
+}
+
+@media (width >= 968px) {
+	.btn-primary,.btn-back,
+	.btn-secondary {
+		font-size: 2rem;
+		
+	}
+}
+@media (width >= 1200px) {
+	.btn-primary,.btn-back,
+	.btn-secondary {
+		font-size: 2.4rem;
+		
+	}
 }
