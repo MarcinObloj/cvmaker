@@ -1,0 +1,117 @@
+.card-list .card-item {
+	color: rgba(34, 40, 49, 1);
+	user-select: none;
+	padding: 1em 45px;
+    min-height: 400px;
+    height: 70vh;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	backdrop-filter: blux(30px);
+	border-radius: 8px;
+	background: rgba(254, 200, 91, 1);
+	border: 1px solid rgba(255, 255, 255, 0.5);
+	align-self: stretch;
+}
+.slider-wrapper {
+	overflow: hidden;
+	max-width: 1200px;
+	margin: 0 70px 55px;
+}
+.container {
+    
+}
+
+.card-list .card-item .user-image {
+	width: 100%;
+	height: 100%;
+	border-radius: 16px;
+	margin-bottom: 40px;
+	border: 3px solid #fff;
+	padding: 4px;
+}
+.card-list .card-item .user-profession {
+	// font-size: 1.4rem;
+	color: rgba(57, 62, 70, 1);
+	font-weight: 500;
+	margin: 14px 0 40px;
+}
+.card-list .card-item .message-button {
+	font-size: 2rem;
+	padding: 10px 35px;
+	color: rgba(34, 40, 49, 1);
+	border-radius: 16px;
+	// width: 40%;
+    // width: auto;
+	font-weight: 500;
+	background: #fff;
+	border: 1px solid transparent;
+	transition: 0.2s ease;
+	cursor: pointer;
+    margin-bottom: 1em;
+}
+
+.card-list .card-item .message-button:hover {
+	background: rgba(255, 255, 255, 0.1);
+	border: 1px solid rgba(34, 40, 49, 1);
+	color: rgba(34, 40, 49, 1);
+}
+.slider-wrapper .swiper-pagination-bullet {
+	background: rgba(254, 200, 91, 1);
+	height: 25px;
+	width: 25px;
+}
+.slider-wrapper .swiper-slide-button {
+	color: rgba(254, 200, 91, 1);
+	margin-top: -50px;
+	transition: color 0.3s;
+	&:hover {
+		color: rgba(213, 168, 76, 1);
+	}
+}
+
+@media (min-width: 576px) {
+	.slider-wrapper {
+		font-size: 24px;
+	}
+
+	.card-list .card-item .message-button {
+		font-size: 24px;
+	}
+	.card-list .card-item .user-profession {
+		font-size: 20px;
+	}
+}
+
+@media (max-width: 768px) {
+	.slider-wrapper {
+		margin: 0 10px 40px;
+	}
+	.slider-wrapper .swiper-slide-button {
+		display: none;
+	}
+}
+@media (min-width: 768px) {
+	.card-list .card-item {
+		padding: 6em 45px;
+	}
+}
+@media (min-width: 768px) and (max-width: 992px) {
+	.card-list .card-item {
+		padding: 3em 45px;
+	}
+	.slider-wrapper {
+		font-size: 24px;
+	}
+
+	.card-list .card-item .message-button {
+		font-size: 20px;
+	}
+	.card-list .card-item .user-profession {
+		font-size: 16px;
+	}
+	h2.user-name {
+		font-size: 24px;
+	}
+}
