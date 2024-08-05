@@ -25,6 +25,7 @@
 	.account-buttons {
 		display: flex;
 		flex-direction: column;
+
 		gap: 1em;
 		.account-button {
 			padding: 1em 2em;
@@ -33,6 +34,7 @@
 			background-color: transparent;
 			transition: background-color 0.3s;
 			font-size: 1.6rem;
+
 			&:hover {
 				background-color: #ededed;
 			}
@@ -64,19 +66,60 @@
 			font-size: 1.4rem;
 			margin-bottom: 2em;
 		}
-
-		
-}
+	}
 }
 .cv__box {
-	
+	position: relative;
 
 	&-photo {
 		width: 100%;
 	}
+	.download-btn,
+	.delete-btn {
+		position: absolute;
+		padding: 1em;
+		border-radius: 16px;
+		opacity: 0;
+
+		font-size: 1.6rem;
+		border: 1px #eee;
+		color: #fff;
+		background: var(--primary-300, #696d73);
+	}
+	.download-btn {
+		bottom: 10px;
+		left: 20px;
+		// transform: translate(-50%);
+		width: 80%;
+		display: block;
+		transition: background-color 0.3s, opacity 0.5s;
+		&:hover {
+			background-color: var(--primary-400, #454a52);
+		}
+	}
+	.delete-btn {
+		right: 10px;
+		top: 10px;
+		transition: color 0.3s, opacity 0.5s;
+		&:hover {
+			color: rgba(255, 99, 71, 1);
+		}
+	}
+	&:hover .delete-btn,
+	&:hover .download-btn {
+		opacity: 1;
+	}
 }
 
-
+@media (width >= 576px) {
+	.cv__box {
+		.download-btn {
+			bottom: 20px;
+			left: 50%;
+			transform: translate(-50%);
+		}
+	}
+}
 
 @media (min-width: 768px) {
 	.dashboard {
@@ -125,17 +168,17 @@
 	.cv__boxes {
 		display: flex;
 		flex-wrap: wrap;
-		gap: 1em; 
+		gap: 1em;
 		.cv__box {
-			width: calc(
-				50% - 0.5em
-			); 
-			margin-bottom: 1em; 
+			width: calc(50% - 0.5em);
+			margin-bottom: 1em;
 
-			
+			.delete-btn,
+			.download-btn {
+				font-size: 2rem;
+			}
 		}
 	}
-
 }
 
 @media (min-width: 1200px) {
@@ -143,7 +186,9 @@
 		width: 20%;
 	}
 	.account-box,
-	.account-button {
+	.account-button,
+	.delete-btn,
+	.download-btn {
 		font-size: 2.4rem;
 	}
 	.dashboard-box {
@@ -157,14 +202,10 @@
 		}
 	}
 	.cv__boxes {
-		
 		.cv__box {
 			width: calc(
 				33% - 0.5em
 			); // Adjust the width to fit two boxes in a row, subtracting the gap
-			
-
-			
 		}
 	}
 }
