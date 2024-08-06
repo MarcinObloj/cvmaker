@@ -4,11 +4,11 @@
 
 .main {
 	padding: 2em;
-    text-align: center;
-    height: 80vh;
-    position: relative;
-   
-	
+	text-align: center;
+	height: 80vh;
+	position: relative;
+	// overflow: hidden;
+
 	.third__step-box {
 		margin-bottom: 1em;
 		display: flex;
@@ -33,42 +33,245 @@
 		&-active {
 			color: rgba(34, 40, 49, 1);
 		}
-		
+
 		hr {
 			display: none;
 		}
 	}
-    .congrats-heading{
-        margin: 4em 0;
-    }
-    .congrats-btns{
-        font-size: 1.6rem;
-        font-weight: bold;
-        .btn-userpanel{
-            border: 3px solid $colorPrimary500;
-            color: $colorPrimary500;
-            display: inline-block;
-            padding: 1em 2em;
-            width: 40%;
-            border-radius: 16px;
-            margin: 2em ;
-            text-align: center;
-            transition:color .3s, border .3s;
-            &:hover{
-                color: $colorBtnBackground500;
-                border:3px solid $colorBtnBackground500;
-            }
-        }
-    }
-    .confetti{
-        position: absolute;
-        left: 50%;
-        transform: translate(-50%);
-        top: 150px;
-        z-index: -1;
-        width: 100%;
-        max-width: 1200px;
-    }
+	.congrats-heading {
+		margin: 4em 0;
+	}
+	.congrats-btns {
+		font-size: 1.6rem;
+		font-weight: bold;
+		.btn-userpanel {
+			border: 3px solid $colorPrimary500;
+			color: $colorPrimary500;
+			display: inline-block;
+			padding: 1em 2em;
+			width: 40%;
+			border-radius: 16px;
+			margin: 2em;
+			text-align: center;
+			transition: color 0.3s, border 0.3s;
+
+			&:hover {
+				color: $colorBtnBackground500;
+				border: 3px solid $colorBtnBackground500;
+			}
+		}
+	}
+	.confetti {
+		position: absolute;
+		left: 50%;
+		transform: translate(-50%);
+		top: 150px;
+		z-index: -1;
+		width: 100%;
+		max-width: 1200px;
+	}
+}
+.nav {
+	.open-overlay {
+		position: absolute;
+		right: 20px;
+		top: 20px;
+		.open-btn {
+			background: none;
+		}
+	}
+}
+
+.main-step {
+	padding: 2em;
+	overflow: hidden;
+	.cv-title-input {
+		font-size: 2rem;
+		padding: 0.5em;
+		width: calc(100% - 1em);
+		margin: 0.5em 0;
+		border: 2px solid #c8c8c8;
+		border-radius: 0.5em;
+	}
+	.cv-title {
+		text-align: center;
+		text-transform: uppercase;
+		margin-bottom: 1em;
+	}
+	.section-title {
+		font-size: 2rem;
+	}
+	.personal-info-box {
+		margin-top: 0.5em;
+	}
+	.form-group {
+		position: relative;
+		input {
+			display: block;
+			margin-bottom: 1em;
+		}
+		input,
+		textarea {
+			font-size: 1.6rem;
+			width: 100%;
+			padding: 1em 2em;
+			border-radius: 1.6rem;
+			border: 2px solid var(--bg-color-600, #c8c8c8);
+		}
+		textarea {
+			padding: 2.5em 1em 2em 2em;
+			margin-bottom: 1.5em;
+		}
+		.photo-upload {
+			border: none;
+			display: none;
+		}
+		.text-area-box {
+			position: relative;
+			.btn-box {
+				position: absolute;
+				// top: 5px;
+				left: 10px;
+				.tool {
+					font-size: 1.6rem;
+					padding: 0.5em;
+					background: none;
+					color: rgba(140, 143, 148, 1);
+					transition: color 0.3s;
+					&:hover {
+						color: $colorPrimary500;
+					}
+				}
+			}
+		}
+
+		.upload-label {
+			display: flex;
+			align-items: center;
+			gap: 1em;
+			padding: 1rem 0;
+			// background-color: $colorBtnBackground500;
+			color: $colorBtnBackground500;
+			font-weight: bold !important;
+			border-radius: 4px;
+			cursor: pointer;
+		}
+		.input-title {
+			display: flex;
+			align-items: center;
+			gap: 0.5em;
+			margin-bottom: 0.5em;
+
+			.form-group-info-box {
+				position: relative;
+				cursor: pointer;
+
+				&::before {
+					content: attr(data-content);
+					position: absolute;
+					top: -150%;
+					left: -250%;
+					padding: 1em;
+					width: 150px;
+					text-align: center;
+					// left: 10px;
+					// transform: translate(-50%, -50%);
+					border: 1px solid $colorBtnBackground500;
+					background-color: #fff;
+					border-radius: 16px;
+					opacity: 0;
+					visibility: hidden;
+					font-size: 1.4rem;
+					transition: opacity 0.3s, visibility 0.3s;
+					&:nth-of-type(1) {
+						content: 'elo';
+					}
+				}
+				&:hover::before {
+					opacity: 1;
+					visibility: visible;
+				}
+			}
+		}
+	}
+	.primary-btn-box {
+		margin-top: 1em;
+		.btn-primary {
+			width: 100%;
+			margin-top: 0.5em;
+		}
+		.btn-back {
+			display: block;
+			width: 100%;
+			text-align: center;
+			color: $colorPrimary500;
+			font-weight: bold;
+		}
+		.reset-btn {
+			margin-top: 0.5em;
+		}
+		.fa-solid {
+			opacity: 0;
+			transition: opacity 0.3s, transform 0.3s;
+		}
+		.btn-back:hover .fa-solid {
+			transform: translateX(-20px);
+			opacity: 1;
+		}
+	}
+}
+.overlay {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: #eee;
+	display: flex;
+	transform: translateX(120%);
+	justify-content: center;
+	align-items: center;
+	z-index: 1000;
+	transition: transform 0.3s;
+	&-active {
+		transform: translateX(0);
+	}
+	.rectangle {
+		background: #d9d9d9;
+		height: 85vh;
+		width: 100%;
+		border-radius: 1.6rem;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		.cv-preview {
+			width: 80%;
+			height: 80%;
+			background-color: #fff;
+			border-radius: 1.6rem;
+		}
+	}
+	.close-btn {
+		position: absolute;
+		background: none;
+		top: 20px;
+		right: 20px;
+	}
+}
+.hidden {
+	display: none;
+}
+.bold {
+	font-weight: bold;
+}
+.italic {
+	font-style: italic;
+}
+.underline {
+	text-decoration: underline;
+}
+.strike-through {
+	text-decoration: line-through;
 }
 @media (width >= 568px) {
 	.third__step-boxes {
@@ -77,6 +280,7 @@
 		gap: 1em;
 	}
 }
+
 @media (width >= 992px) {
 	.third__step-boxes,
 	.main .congrats-btns {
@@ -92,14 +296,72 @@
 		.congrats-heading {
 			font-size: 3.2rem;
 		}
-        .congrats-btns{
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-        .confetti{
-            top: 5%;
-        }
+		.congrats-btns {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+		}
+		.confetti {
+			top: 5%;
+		}
+	}
+	.nav {
+		.open-overlay {
+			display: none;
+		}
+	}
+	.main-step {
+		display: flex;
+		// margin: auto;
+		// overflow: auto;
+		overflow: visible;
+		position: relative;
+		gap: 1em;
+		.cv-title {
+			text-align: center;
+			text-transform: uppercase;
+			margin-bottom: 1em;
+		}
+		.section-title {
+			// margin-bottom: 0.5em;
+		}
+		.form-group {
+			position: relative;
+			input {
+				display: block;
+				margin-bottom: 1em;
+			}
+			input,
+			textarea {
+				font-size: 2rem;
+			}
+
+			.upload-label {
+				font-size: 2rem;
+			}
+			.input-title {
+				font-size: 2rem;
+			}
+		}
+		.overlay {
+			position: sticky;
+			top: 10%;
+
+			width: 100%;
+			height: 100%;
+
+			transform: translateX(0);
+
+			.close-btn {
+				display: none;
+			}
+		}
+		.cv-title {
+			font-size: 3.2rem;
+		}
+		.section-title {
+			font-size: 2.4rem;
+		}
 	}
 }
 @media (width >= 1200px) {
@@ -110,6 +372,33 @@
 	.main {
 		.congrats-heading {
 			font-size: 4.2rem;
+		}
+	}
+	.primary-btn-box {
+		display: flex;
+		justify-content: center;
+		// align-items: center;
+		gap: 1em;
+		.btn-back {
+			height: 100%;
+			margin-top: 12px;
+		}
+	}
+	.main-step {
+		.cv-title {
+			font-size: 4.2rem;
+		}
+		.section-title {
+			font-size: 2.8rem;
+		}
+		.personal-info-box {
+			display: flex;
+			// justify-content: center;
+			flex-wrap: wrap;
+			gap: 1em;
+			.form-group {
+				width: 45%;
+			}
 		}
 	}
 }

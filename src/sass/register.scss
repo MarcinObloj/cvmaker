@@ -37,7 +37,9 @@ main {
 	.form-reset {
 		display: block;
 		text-align: right;
-		color: $colorButton500;
+		background: $colorLinear;
+		background-clip: text;
+		color: transparent;
 		transition: color 0.3s;
 		&:hover {
 			color: $colorButton700;
