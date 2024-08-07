@@ -8,6 +8,8 @@
 			src="https://kit.fontawesome.com/11fe5cd726.js"
 			crossorigin="anonymous"></script>
 		<link rel="stylesheet" href="./dist/css/thirdstep.min.css" />
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
 	</head>
 	<body>
 		<nav class="nav">
@@ -29,7 +31,6 @@
 						</div>
 						<p class="third__step-box-info">Wybierz szablon</p>
 					</div>
-
 					<div class="third__step-box">
 						<div class="third__step-box-number">
 							<i class="fa-solid fa-2"></i>
@@ -44,13 +45,17 @@
 					</div>
 				</div>
 				<h2 class="congrats-heading">Gratulacje! stworzyłes CV</h2>
-                <img src="./dist/img/confetti.png" alt="" class="confetti">
+				<img src="./dist/img/confetti.png" alt="" class="confetti" />
+				<div id="cv-preview-container" class="cv-preview">
+					<!-- Tu powinien znaleźć się podgląd CV z secondstep.html -->
+				</div>
 				<div class="congrats-btns">
-					<button class="btn-primary">Pobierz CV</button>
+					<button id="download-cv" class="btn-primary">Pobierz CV</button>
 					<p>LUB</p>
 					<a href="userpanel.html" class="btn-userpanel">Przejrzyj CV</a>
 				</div>
 			</div>
 		</main>
+		<script src="./dist/js/thirdstep.min.js"></script>
 	</body>
 </html>
