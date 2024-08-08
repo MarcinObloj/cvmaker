@@ -34,15 +34,22 @@
 							<li class="nav__desktop-item nav-item">
 								<a href="firststep.html">Kreator</a>
 							</li>
-							<li class="nav__desktop-item nav-item"><a href="blog.html">Blog</a></li>
+							<li class="nav__desktop-item nav-item">
+								<a href="blog.html">Blog</a>
+							</li>
 							<li class="nav__desktop-item nav-item">
 								<a href="#" class="faq-item">FAQ</a>
 							</li>
 							<li class="nav__desktop-item nav-item login">
 								<a href="login.html">Logowanie</a>
 							</li>
-							<li class="nav__desktop-item nav-item">
+							<li class="nav__desktop-item nav-item register">
 								<a href="register.html">Rejestracja</a>
+							</li>
+							<li
+								class="nav__desktop-item nav-item user-panel"
+								style="display: none">
+								<a href="userpanel.html">Panel użytkownika</a>
 							</li>
 						</ul>
 					</div>
@@ -63,13 +70,20 @@
 							<li class="nav__mobile-item nav-item">
 								<a href="firststep.html">Kreator</a>
 							</li>
-							<li class="nav__mobile-item nav-item"><a href="blog.html">Blog</a></li>
-							<li class="nav__mobile-item nav-item"><a href="#">FAQ</a></li>
 							<li class="nav__mobile-item nav-item">
+								<a href="blog.html">Blog</a>
+							</li>
+							<li class="nav__mobile-item nav-item"><a href="#">FAQ</a></li>
+							<li class="nav__mobile-item nav-item login">
 								<a href="login.html">Logowanie</a>
 							</li>
-							<li class="nav__mobile-item nav-item">
+							<li class="nav__mobile-item nav-item register">
 								<a href="register.html">Rejestracja</a>
+							</li>
+							<li
+								class="nav__desktop-item nav-item user-panel"
+								style="display: none">
+								<a href="userpanel.html">Panel użytkownika</a>
 							</li>
 						</div>
 					</ul>
@@ -322,50 +336,90 @@
 					<h2 class="section-heading">Wybierz jeden z gotowych szablonów</h2>
 					<div class="container">
 						<div class="slider-wrapper">
-							<button id="prev-slide" class="slide-button material-symbols-rounded">chevron_left</button>
+							<button
+								id="prev-slide"
+								class="slide-button material-symbols-rounded">
+								chevron_left
+							</button>
 							<ul class="image-list">
 								<li class="image-box">
-									<img class="image-item" src="https://picsum.photos/200/300?random=1" alt="img-1" />
+									<img
+										class="image-item"
+										src="https://picsum.photos/200/300?random=1"
+										alt="img-1" />
 									<div class="image-title"><h3>Szablon Nowoczesny</h3></div>
 								</li>
 								<li class="image-box">
-									<img class="image-item" src="https://picsum.photos/200/300?random=2" alt="img-2" />
+									<img
+										class="image-item"
+										src="https://picsum.photos/200/300?random=2"
+										alt="img-2" />
 									<div class="image-title"><h3>Szablon Klasyczny</h3></div>
 								</li>
 								<li class="image-box">
-									<img class="image-item" src="https://picsum.photos/200/300?random=3" alt="img-3" />
+									<img
+										class="image-item"
+										src="https://picsum.photos/200/300?random=3"
+										alt="img-3" />
 									<div class="image-title"><h3>Szablon Kreatywny</h3></div>
 								</li>
 								<li class="image-box">
-									<img class="image-item" src="https://picsum.photos/200/300?random=4" alt="img-4" />
+									<img
+										class="image-item"
+										src="https://picsum.photos/200/300?random=4"
+										alt="img-4" />
 									<div class="image-title"><h3>Szablon Profesjonalny</h3></div>
 								</li>
 								<li class="image-box">
-									<img class="image-item" src="https://picsum.photos/200/300?random=5" alt="img-5" />
-									<div class="image-title"><h3>Szablon Minimalistyczny</h3></div>
+									<img
+										class="image-item"
+										src="https://picsum.photos/200/300?random=5"
+										alt="img-5" />
+									<div class="image-title">
+										<h3>Szablon Minimalistyczny</h3>
+									</div>
 								</li>
 								<li class="image-box">
-									<img class="image-item" src="https://picsum.photos/200/300?random=6" alt="img-6" />
+									<img
+										class="image-item"
+										src="https://picsum.photos/200/300?random=6"
+										alt="img-6" />
 									<div class="image-title"><h3>Szablon Studencki</h3></div>
 								</li>
 								<li class="image-box">
-									<img class="image-item" src="https://picsum.photos/200/300?random=7" alt="img-7" />
+									<img
+										class="image-item"
+										src="https://picsum.photos/200/300?random=7"
+										alt="img-7" />
 									<div class="image-title"><h3>Szablon Ekonomiczny</h3></div>
 								</li>
 								<li class="image-box">
-									<img class="image-item" src="https://picsum.photos/200/300?random=8" alt="img-8" />
+									<img
+										class="image-item"
+										src="https://picsum.photos/200/300?random=8"
+										alt="img-8" />
 									<div class="image-title"><h3>Szablon Artystyczny</h3></div>
 								</li>
 								<li class="image-box">
-									<img class="image-item" src="https://picsum.photos/200/300?random=9" alt="img-9" />
+									<img
+										class="image-item"
+										src="https://picsum.photos/200/300?random=9"
+										alt="img-9" />
 									<div class="image-title"><h3>Szablon IT</h3></div>
 								</li>
 								<li class="image-box">
-									<img class="image-item" src="https://picsum.photos/200/300?random=10" alt="img-10" />
+									<img
+										class="image-item"
+										src="https://picsum.photos/200/300?random=10"
+										alt="img-10" />
 									<div class="image-title"><h3>Szablon Biznesowy</h3></div>
 								</li>
 							</ul>
-							<button id="next-slide" class="slide-button material-symbols-rounded">chevron_right</button>
+							<button
+								id="next-slide"
+								class="slide-button material-symbols-rounded">
+								chevron_right
+							</button>
 						</div>
 						<div class="slider-scrollbar">
 							<div class="scrollbar-track">
@@ -375,8 +429,6 @@
 					</div>
 				</div>
 			</section>
-			
-			
 		</main>
 		<footer class="footer">
 			<hr />
@@ -440,14 +492,60 @@
 						<a href="#"><img src="./dist/img/fb.svg" alt="facebook" /></a>
 						<a href="#"><img src="./dist/img/twitter.svg" alt="facebook" /></a>
 					</div>
-
-					
 				</div>
-				 <p class="footer--mobile-copyright">
-						&copy; 2024 Creator CV. Wszelkie prawa zastrzeżone.
-					</p> 
+				<p class="footer--mobile-copyright">
+					&copy; 2024 Creator CV. Wszelkie prawa zastrzeżone.
+				</p>
 			</div>
 		</footer>
+		<script src="./dist/js/session.min.js"></script>
+		<script>
+			document.addEventListener('DOMContentLoaded', function () {
+				const sessionToken = localStorage.getItem('sessionToken');
+				console.log(sessionToken);
+				// Elementy nawigacji
+				const loginLink = document.querySelector('.nav__desktop-item.login');
+				const registerLink = document.querySelector(
+					'.nav__desktop-item.register'
+				);
+				const userPanelLink = document.querySelector(
+					'.nav__desktop-item.user-panel'
+				);
+
+				// Jeśli token sesji istnieje
+				if (sessionToken) {
+					if (loginLink) loginLink.style.display = 'none';
+					if (registerLink) registerLink.style.display = 'none';
+					if (userPanelLink) userPanelLink.style.display = 'block';
+				} else {
+					if (loginLink) loginLink.style.display = 'block';
+					if (registerLink) registerLink.style.display = 'block';
+					if (userPanelLink) userPanelLink.style.display = 'none';
+				}
+
+				// Powtórz dla wersji mobilnej
+				const mobileLoginLink = document.querySelector(
+					'.nav__mobile-item.login'
+				);
+				const mobileRegisterLink = document.querySelector(
+					'.nav__mobile-item.register'
+				);
+				const mobileUserPanelLink = document.querySelector(
+					'.nav__mobile-item.user-panel'
+				);
+
+				if (sessionToken) {
+					if (mobileLoginLink) mobileLoginLink.style.display = 'none';
+					if (mobileRegisterLink) mobileRegisterLink.style.display = 'none';
+					if (mobileUserPanelLink) mobileUserPanelLink.style.display = 'block';
+				} else {
+					if (mobileLoginLink) mobileLoginLink.style.display = 'block';
+					if (mobileRegisterLink) mobileRegisterLink.style.display = 'block';
+					if (mobileUserPanelLink) mobileUserPanelLink.style.display = 'none';
+				}
+			});
+		</script>
+
 		<script src="dist/js/carousel.min.js"></script>
 		<script src="dist/js/main.min.js"></script>
 	</body>

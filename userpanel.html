@@ -26,7 +26,9 @@
 						src="./dist/img/account-photo.png"
 						alt="zdjecie swojego profilu"
 						class="account-img" />
-					<p class="account-name"><strong>Louis Carter</strong></p>
+					<p class="account-name" id="userName">
+						<strong>Louis Carter</strong>
+					</p>
 				</div>
 				<div class="account-buttons">
 					<button class="account-button active">
@@ -42,7 +44,9 @@
 				</div>
 			</aside>
 			<main class="main">
-				<h2 class="main-heading">Witaj,<span>louis carter</span></h2>
+				<h2 class="main-heading">
+					Witaj,<span id="userGreeting">louis carter</span>
+				</h2>
 				<p class="main-info">
 					Poniżej znajdziesz wszystkie dotychczas stworzone CV przez ciebie
 				</p>
@@ -122,6 +126,18 @@
 				</div>
 			</main>
 		</div>
-		<script src="dist/js/main.min.js"></script>
+		<script>
+			document.addEventListener('DOMContentLoaded', () => {
+				const userName = sessionStorage.getItem('userName');
+				if (userName) {
+					document.getElementById(
+						'userName'
+					).innerHTML = `<strong>${userName}</strong>`;
+					document.getElementById('userGreeting').textContent = userName;
+				}
+			});
+		</script>
+		<script src="./dist/js/session.min.js"></script>
+		<!-- <script src="dist/js/main.min.js"></script> -->
 	</body>
 </html>

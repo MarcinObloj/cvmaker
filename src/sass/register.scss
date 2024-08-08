@@ -10,6 +10,18 @@ main {
 	align-items: center;
 }
 
+.message {
+	text-align: center;
+	font-size: 1.6rem;
+	.success {
+		background: $colorLinear;
+		background-clip: text;
+		color: transparent;
+	}
+	.error {
+		color: tomato;
+	}
+}
 .form-box {
 	background-color: #fff;
 	padding: 4em 2em;
@@ -91,6 +103,9 @@ main {
 @media (width >= 568px) {
 }
 @media (width >= 992px) {
+	.message {
+		font-size: 2rem;
+	}
 	main {
 		height: 80vh;
 	}

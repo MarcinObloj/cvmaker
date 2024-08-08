@@ -67,3 +67,6 @@ const cycleActiveClass = () => {
 intervalId = setInterval(cycleActiveClass, 10000);
 
 cycleActiveClass();
+
+
+
