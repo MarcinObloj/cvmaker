@@ -9,6 +9,9 @@ main {
 	justify-content: center;
 	align-items: center;
 }
+.reset{
+	height: 80vh;
+}
 
 .message {
 	text-align: center;
@@ -33,6 +36,8 @@ main {
 		width: 100%;
 	}
 	.btn-back {
+		text-align: center;
+		display: block;
 		width: 100%;
 	}
 	.reset-btn {
@@ -100,8 +105,32 @@ main {
 		}
 	}
 }
-@media (width >= 568px) {
+@media (width <= 310px) {
+	.form-box {
+		.fa {
+			left: 10px;
+			top: 35px;
+		}
+		.fa-user {
+			top: 73px;
+		}
+		.icon{
+			top: 55px;
+		}
+	}
 }
+@media (  310px <= width <= 390px) {
+	.form-box {
+		
+		.fa-user {
+			top: 55px;
+		}
+		.icon{
+			top: 35px;
+		}
+	}
+}
+
 @media (width >= 992px) {
 	.message {
 		font-size: 2rem;
