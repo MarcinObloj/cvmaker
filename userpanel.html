@@ -1,143 +1,155 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>CVMaker</title>
-		<script
-			src="https://kit.fontawesome.com/11fe5cd726.js"
-			crossorigin="anonymous"></script>
-		<link rel="stylesheet" href="./dist/css/adminpanel.min.css" />
-	</head>
-	<body>
-		<div class="dashboard-box">
-			<aside class="dashboard">
-				<div class="nav__logo">
-					<a href="index.html" class="nav__logo-text">
-						<img
-							src="./dist/img/logo.svg"
-							alt="Logo"
-							class="nav__logo-img" />Creator<span>CV</span>
-					</a>
-				</div>
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CVMaker</title>
+    <script src="https://kit.fontawesome.com/11fe5cd726.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="./dist/css/adminpanel.min.css" />
+</head>
+<body>
+    <div class="dashboard-box">
+        <aside class="dashboard">
+            <div class="nav__logo">
+                <a href="index.html" class="nav__logo-text">
+                    <img src="./dist/img/logo.svg" alt="Logo" class="nav__logo-img" />Creator<span>CV</span>
+                </a>
+            </div>
 
-				<div class="account-box">
-					<img
-						src="./dist/img/account-photo.png"
-						alt="zdjecie swojego profilu"
-						class="account-img" />
-					<p class="account-name" id="userName">
-						<strong>Louis Carter</strong>
-					</p>
-				</div>
-				<div class="account-buttons">
-					<button class="account-button active">
-						<i class="fa-solid fa-table-columns"></i
-						><span class="siemanko"> Panel</span>
-					</button>
-					<button class="account-button">
-						<i class="fa-solid fa-gear"></i><span> Ustawienia</span>
-					</button>
-					<button class="account-button">
-						<i class="fa-solid fa-server"></i><span> Dane </span>
-					</button>
-				</div>
-			</aside>
-			<main class="main">
-				<h2 class="main-heading">
-					Witaj,<span id="userGreeting">louis carter</span>
-				</h2>
-				<p class="main-info">
-					Poniżej znajdziesz wszystkie dotychczas stworzone CV przez ciebie
-				</p>
-				<div class="cv__boxes">
-					<div class="cv__box">
-						<img
-							src="./dist/img/cv-box.png"
-							alt="zdjecie stworzonego cv"
-							class="cv__box-photo" />
-						<button class="delete-btn">
-							<i class="fa-solid fa-trash"></i>
-						</button>
-						<button class="download-btn">
-							Download | <i class="fa-solid fa-file-pdf"></i>
-						</button>
-					</div>
-					<div class="cv__box">
-						<img
-							src="./dist/img/cv-box.png"
-							alt="zdjecie stworzonego cv"
-							class="cv__box-photo" />
-						<button class="delete-btn">
-							<i class="fa-solid fa-trash"></i>
-						</button>
-						<button class="download-btn">
-							Download | <i class="fa-solid fa-file-pdf"></i>
-						</button>
-					</div>
-					<div class="cv__box">
-						<img
-							src="./dist/img/cv-box.png"
-							alt="zdjecie stworzonego cv"
-							class="cv__box-photo" />
-						<button class="delete-btn">
-							<i class="fa-solid fa-trash"></i>
-						</button>
-						<button class="download-btn">
-							Download | <i class="fa-solid fa-file-pdf"></i>
-						</button>
-					</div>
-					<div class="cv__box">
-						<img
-							src="./dist/img/cv-box.png"
-							alt="zdjecie stworzonego cv"
-							class="cv__box-photo" />
-						<button class="delete-btn">
-							<i class="fa-solid fa-trash"></i>
-						</button>
-						<button class="download-btn">
-							Download | <i class="fa-solid fa-file-pdf"></i>
-						</button>
-					</div>
-					<div class="cv__box">
-						<img
-							src="./dist/img/cv-box.png"
-							alt="zdjecie stworzonego cv"
-							class="cv__box-photo" />
-						<button class="delete-btn">
-							<i class="fa-solid fa-trash"></i>
-						</button>
-						<button class="download-btn">
-							Download | <i class="fa-solid fa-file-pdf"></i>
-						</button>
-					</div>
-					<div class="cv__box">
-						<img
-							src="./dist/img/cv-box.png"
-							alt="zdjecie stworzonego cv"
-							class="cv__box-photo" />
-						<button class="delete-btn">
-							<i class="fa-solid fa-trash"></i>
-						</button>
-						<button class="download-btn">
-							Download | <i class="fa-solid fa-file-pdf"></i>
-						</button>
-					</div>
-				</div>
-			</main>
-		</div>
-		<script>
-			document.addEventListener('DOMContentLoaded', () => {
-				const userName = sessionStorage.getItem('userName');
-				if (userName) {
-					document.getElementById(
-						'userName'
-					).innerHTML = `<strong>${userName}</strong>`;
-					document.getElementById('userGreeting').textContent = userName;
-				}
-			});
-		</script>
-		<script src="./dist/js/session.min.js"></script>
-		<!-- <script src="dist/js/main.min.js"></script> -->
-	</body>
+            <div class="account-box">
+                <img src="./dist/img/account-photo.png" alt="zdjecie swojego profilu" class="account-img" />
+                <p class="account-name" id="userName">
+                    <strong id="userStrong"></strong>
+                </p>
+            </div>
+            <div class="account-buttons">
+                <button class="account-button active">
+                    <i class="fa-solid fa-table-columns"></i><span class="siemanko"> Panel</span>
+                </button>
+                <button class="account-button">
+                    <i class="fa-solid fa-gear"></i><span> Ustawienia</span>
+                </button>
+                <button class="account-button">
+                    <i class="fa-solid fa-server"></i><span> Dane </span>
+                </button>
+            </div>
+        </aside>
+        <main class="main">
+            <h2 class="main-heading">
+                Witaj,<span id="userGreeting"></span>
+            </h2>
+            <p class="main-info">
+                Poniżej znajdziesz wszystkie dotychczas stworzone CV przez ciebie
+            </p>
+            <div class="cv__boxes">
+                <!-- CV boxes will be dynamically added here -->
+            </div>
+        </main>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Pobieranie nazwy użytkownika i userId z sessionStorage
+            const userName = sessionStorage.getItem('userName');
+            const userId = sessionStorage.getItem('userId');
+
+            // Sprawdzanie, czy nazwa użytkownika jest dostępna
+            if (userName) {
+                // Ustawianie nazwy użytkownika w elementach HTML
+                document.getElementById('userStrong').textContent = userName;
+                document.getElementById('userGreeting').textContent = userName;
+            } else {
+                console.error('Nazwisko użytkownika nie znalezione w sessionStorage.');
+            }
+
+            // Wyszukiwanie kontenera dla CV
+            const cvBoxesContainer = document.querySelector('.cv__boxes');
+            if (!cvBoxesContainer) {
+                console.error('Element kontenera CV nie został znaleziony.');
+                return;
+            }
+
+            // Funkcja do tworzenia i dodawania boxów CV
+            function createCvBox(cvFile) {
+                const cvBox = document.createElement('div');
+                cvBox.className = 'cv__box';
+
+                const img = document.createElement('img');
+                img.src = './dist/img/cv-box.png'; 
+                img.alt = 'Zdjęcie stworzonego CV';
+                img.className = 'cv__box-photo';
+                cvBox.appendChild(img);
+
+                const deleteBtn = document.createElement('button');
+                deleteBtn.className = 'delete-btn';
+                deleteBtn.innerHTML = '<i class="fa-solid fa-trash"></i>';
+                deleteBtn.onclick = () => deleteCv(cvFile.id);
+                cvBox.appendChild(deleteBtn);
+
+                const downloadBtn = document.createElement('button');
+                downloadBtn.className = 'download-btn';
+                downloadBtn.innerHTML =
+                    'Download | <i class="fa-solid fa-file-pdf"></i>';
+                downloadBtn.onclick = () => downloadCv(cvFile.id);
+                cvBox.appendChild(downloadBtn);
+
+                cvBoxesContainer.appendChild(cvBox);
+            }
+
+            // Funkcja do pobrania wszystkich CV dla użytkownika
+            function loadUserCvFiles(userId) {
+                fetch(`http://localhost:8080/api/cvfile/list/${userId}`)
+                    .then((response) => {
+                        if (!response.ok) {
+                            throw new Error('Network response was not ok');
+                        }
+                        return response.json();
+                    })
+                    .then((cvFiles) => {
+                        cvFiles.forEach((cvFile) => {
+                            createCvBox(cvFile);
+                        });
+                    })
+                    .catch((error) => {
+                        console.error('Błąd podczas ładowania CV:', error);
+                    });
+            }
+
+            // Pobranie userId z sessionStorage i załadowanie CV
+            if (userId) {
+                loadUserCvFiles(userId);
+            } else {
+                console.error('UserId nie znaleziono w sessionStorage.');
+            }
+        });
+
+        // Funkcja do pobierania CV
+        function downloadCv(cvFileId) {
+            window.location.href = `http://localhost:8080/api/cvfile/download/${cvFileId}`;
+        }
+
+        // Funkcja do usuwania CV
+        function deleteCv(cvFileId) {
+            fetch(`http://localhost:8080/api/cvfile/delete/${cvFileId}`, {
+                method: 'DELETE',
+            })
+                .then((response) => {
+                    if (response.ok) {
+                        alert('CV zostało usunięte.');
+                        location.reload(); // Przeładuj stronę po usunięciu CV
+                    } else {
+                        return response.text().then((errorText) => {
+                            throw new Error(errorText);
+                        });
+                    }
+                })
+                .catch((error) => {
+                    console.error('Błąd podczas usuwania CV:', error);
+                    alert('Wystąpił błąd podczas usuwania CV: ' + error.message);
+                });
+        }
+    </script>
+    <script src="./dist/js/session.min.js"></script>
+    <!-- <script src="dist/js/main.min.js"></script> -->
+</body>
 </html>
