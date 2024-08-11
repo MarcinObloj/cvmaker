@@ -66,83 +66,187 @@ document
 	});
 
 // On document load, handle image URL for background
-document.addEventListener('DOMContentLoaded', () => {
-    const imageUrl = getParameterByName('image');
-    if (imageUrl) {
-        const cvPreviewElement = document.getElementById('cv-preview');
-        if (cvPreviewElement) {
-            cvPreviewElement.style.backgroundImage = `url(${decodeURIComponent(imageUrl)})`;
-            cvPreviewElement.style.backgroundSize = 'cover';
-            cvPreviewElement.style.backgroundPosition = 'center';
-        } else {
-            console.error('Element o ID "cv-preview" nie został znaleziony.');
-        }
-    } else {
-        console.error('Parametr "image" nie został znaleziony w URL.');
-    }
+// document.addEventListener('DOMContentLoaded', () => {
+// 	document
+// 		.getElementById('save-cv')
+// 		.addEventListener('click', function (event) {
+// 			event.preventDefault();
 
-    document.getElementById('save-cv').addEventListener('click', function (event) {
-        event.preventDefault();
+// 			console.log('Kliknięcie zarejestrowane!');
 
-        console.log('Kliknięcie zarejestrowane!');
+// 			const cvContent = document.getElementById('cv-preview').outerHTML;
+// 			console.log('Pobrany HTML:', cvContent);
 
-        const cvContent = document.getElementById('cv-preview').outerHTML;
-        console.log('Pobrany HTML:', cvContent);
+// 			const formData = new FormData();
+// 			formData.append(
+// 				'cvContent',
+// 				new Blob([cvContent], { type: 'text/html' })
+// 			);
+// 			formData.append('userId', sessionStorage.getItem('userId')); // Używaj `getItem` do pobrania wartości
 
-        const formData = new FormData();
-        formData.append('cvContent', new Blob([cvContent], { type: 'text/html' }));
-        formData.append('userId', sessionStorage.getItem('userId')); // Używaj `getItem` do pobrania wartości
+// 			if (uploadedPhoto) {
+// 				formData.append('photo', uploadedPhoto); // Dodanie przesłanego zdjęcia do FormData
+// 			}
 
-        if (uploadedPhoto) {
-            formData.append('photo', uploadedPhoto); // Dodanie przesłanego zdjęcia do FormData
-        }
+// 			console.log('Rozpoczynanie fetch...');
 
-        console.log('Rozpoczynanie fetch...');
+// 			fetch('http://localhost:8080/api/cvfile/uploadPdf', {
+// 				method: 'POST',
+// 				body: formData,
+// 			})
+// 				.then((response) => {
+// 					console.log('Fetch zakończony. Status odpowiedzi:', response.status);
 
-        fetch('http://localhost:8080/api/cvfile/uploadPdf', {
-            method: 'POST',
-            body: formData,
-        })
-            .then((response) => {
-                console.log('Fetch zakończony. Status odpowiedzi:', response.status);
+// 					if (!response.ok) {
+// 						console.error('Fetch error:', response);
+// 						return response.text().then((errorText) => {
+// 							throw new Error(errorText);
+// 						});
+// 					}
 
-                if (!response.ok) {
-                    console.error('Fetch error:', response);
-                    return response.text().then((errorText) => {
-                        throw new Error(errorText);
-                    });
-                }
+// 					return response.text(); // Pobierz odpowiedź jako tekst
+// 				})
+// 				.then((text) => {
+// 					console.log('Odpowiedź serwera:', text);
 
-                return response.text(); // Pobierz odpowiedź jako tekst
-            })
-            .then((text) => {
-                console.log('Odpowiedź serwera:', text);
+// 					// Parsowanie odpowiedzi jako JSON, jeśli odpowiedź jest w formacie JSON
+// 					try {
+// 						const data = JSON.parse(text);
 
-                // Parsowanie odpowiedzi jako JSON, jeśli odpowiedź jest w formacie JSON
-                try {
-                    const data = JSON.parse(text);
+// 						// Sprawdź, czy odpowiedź zawiera `cvFileId` i zapisz do `sessionStorage`
+// 						if (data.cvFileId) {
+// 							sessionStorage.setItem('cvFileId', data.cvFileId);
+// 							console.log('cvFileId zapisany w sessionStorage:', data.cvFileId);
+// 						}
+// 					} catch (e) {
+// 						console.error('Błąd parsowania odpowiedzi:', e);
+// 					}
 
-                    // Sprawdź, czy odpowiedź zawiera `cvFileId` i zapisz do `sessionStorage`
-                    if (data.cvFileId) {
-                        sessionStorage.setItem('cvFileId', data.cvFileId);
-                        console.log('cvFileId zapisany w sessionStorage:', data.cvFileId);
-                    }
-                } catch (e) {
-                    console.error('Błąd parsowania odpowiedzi:', e);
-                }
-
-                alert('CV saved successfully!');
-                // Po zapisaniu CV na serwerze, przekierowanie do trzeciego kroku
-                window.location.href = 'thirdstep.html';
-            })
-            .catch((error) => {
-                console.error('Błąd podczas przetwarzania odpowiedzi:', error);
-                alert('Wystąpił błąd podczas zapisywania CV: ' + error.message);
-            });
-    });
-});
+// 					alert('CV saved successfully!');
+// 					// Po zapisaniu CV na serwerze, przekierowanie do trzeciego kroku
+// 					window.location.href = 'thirdstep.html';
+// 				})
+// 				.catch((error) => {
+// 					console.error('Błąd podczas przetwarzania odpowiedzi:', error);
+// 					alert('Wystąpił błąd podczas zapisywania CV: ' + error.message);
+// 				});
+// 		});
+// });
 
 function getParameterByName(name) {
-    const urlParams = new URLSearchParams(window.location.search);
-    return urlParams.get(name);
+	const urlParams = new URLSearchParams(window.location.search);
+	return urlParams.get(name);
 }
+document.addEventListener('DOMContentLoaded', function () {
+	// Odczytaj wybrany szablon z localStorage
+	const selectedTemplate = localStorage.getItem('selectTemplate');
+
+	// Załaduj odpowiedni plik CSS lub dodaj odpowiednią klasę do elementu .cv-preview
+	if (selectedTemplate) {
+		const cvPreviewElement = document.querySelector('.cv-preview');
+
+		switch (selectedTemplate) {
+			case 'cv-classic':
+				cvPreviewElement.classList.add('cv-classic-style');
+
+				// Znajdź istniejące elementy
+				const firstName = document.getElementById('preview-first-name');
+				const lastName = document.getElementById('preview-last-name');
+				const jobTitle = document.getElementById('preview-job-title');
+
+				// Tworzenie personal-info-boxes i przeniesienie do niego elementów
+				const personalInfoBoxes = document.createElement('div');
+				personalInfoBoxes.classList.add('personal-info-boxes');
+
+				if (jobTitle && firstName && lastName) {
+					// Przenoszenie elementów do personal-info-boxes
+					personalInfoBoxes.appendChild(jobTitle);
+					personalInfoBoxes.appendChild(firstName);
+					personalInfoBoxes.appendChild(lastName);
+
+					// Dodanie personal-info-boxes na górze cv-preview
+					cvPreviewElement.prepend(personalInfoBoxes);
+				}
+
+				// Tworzenie personal-data-box
+				const personalDataBox = document.createElement('div');
+				personalDataBox.classList.add('personal-data-boxes');
+
+				// Definicje sekcji z ikonami Font Awesome (bez imienia i nazwiska)
+				const sections = [
+					{ id: 'preview-email', icon: 'fa-envelope' },
+					{ id: 'preview-phone', icon: 'fa-phone' },
+					{ id: 'preview-city', icon: 'fa-city' },
+					{ id: 'preview-postal-code', icon: 'fa-map-marker-alt' },
+				];
+
+				// Dodawanie sekcji do personalDataBox
+				sections.forEach((section) => {
+					const sectionElement = document.getElementById(section.id);
+					if (sectionElement) {
+						const iconElement = document.createElement('i');
+						iconElement.classList.add('fa', section.icon);
+						sectionElement.classList.add('personal-data-box');
+						sectionElement.prepend(iconElement);
+						personalDataBox.appendChild(sectionElement);
+					}
+				});
+
+				// Umieszczenie personal-data-box za sekcją preview-summary
+				const previewSummary = document.getElementById('preview-summary');
+				if (previewSummary) {
+					previewSummary.insertAdjacentElement('afterend', personalDataBox);
+				}
+
+				// Tworzenie main-box i przeniesienie do niego main-box-left i main-box-right
+				const mainBox = document.createElement('div');
+				mainBox.classList.add('main-box');
+
+				// Tworzenie main-box-left i przeniesienie odpowiednich sekcji
+				const mainBoxLeft = document.createElement('div');
+				mainBoxLeft.classList.add('main-box-left');
+
+				const sectionsLeft = [
+					'preview-summary',
+					'preview-education',
+					'preview-skills',
+					'preview-courses',
+				];
+
+				sectionsLeft.forEach((id) => {
+					const sectionElement = document.getElementById(id);
+					if (sectionElement) {
+						mainBoxLeft.appendChild(sectionElement);
+					}
+				});
+
+				// Dodanie main-box-left do main-box
+				mainBox.appendChild(mainBoxLeft);
+
+				// Tworzenie main-box-right i przeniesienie odpowiednich sekcji
+				const mainBoxRight = document.createElement('div');
+				mainBoxRight.classList.add('main-box-right');
+
+				const sectionsRight = ['preview-languages', 'preview-hobbies'];
+
+				sectionsRight.forEach((id) => {
+					const sectionElement = document.getElementById(id);
+					if (sectionElement) {
+						mainBoxRight.appendChild(sectionElement);
+					}
+				});
+
+				// Dodanie main-box-right do main-box
+				mainBox.appendChild(mainBoxRight);
+
+				// Dodanie main-box do cv-preview
+				cvPreviewElement.appendChild(mainBox);
+
+				break;
+			case 'cv-modern':
+				cvPreviewElement.classList.add('cv-modern-style');
+				break;
+			// Dodaj kolejne przypadki dla innych szablonów
+		}
+	}
+});

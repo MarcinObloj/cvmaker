@@ -1,4 +1,7 @@
-function selectTemplate(event, imageUrl) {
+function selectTemplate(event, templateName) {
     event.preventDefault();
-    window.location.href = 'secondstep.html?image=' + encodeURIComponent(imageUrl);
+    // Zapisz wybrany szablon w localStorage
+    localStorage.setItem('selectTemplate', templateName);
+    // Przekieruj użytkownika do secondstep.html
+    window.location.href = 'secondstep.html';
 }
