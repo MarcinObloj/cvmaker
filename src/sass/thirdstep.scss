@@ -2,8 +2,16 @@
 @use './nav' as *;
 @use './reset' as *;
 
+@mixin photo-img {
+	background-image: url('../../dist/img/rect12435.svg');
+	background-size: cover;
+	width: 100%;
+
+	// background-position: center;
+}
 .cv-classic-style {
 	border: 10px solid #0086de !important;
+	height: 100vh;
 	.personal {
 		&-info-boxes {
 			display: flex;
@@ -409,6 +417,85 @@
 	width: 100%;
 	height: auto;
 }
+.cv-modern-style {
+	position: relative;
+	background-image: linear-gradient(180deg, #001738 24.21%, #000d20 97.72%);
+	color: #fff;
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr;
+	gap: 20px;
+
+	.personal-info-boxes-modern {
+		grid-column: 2/-1;
+		display: flex;
+		flex-wrap: wrap;
+		position: relative;
+		right: 0;
+		@include photo-img;
+		color: #162d50;
+		font-size: 20px;
+		// text-transform: uppercase;
+		padding: 1em;
+
+		right: 0;
+		.cv-section {
+			margin: 0;
+			padding: 0;
+		}
+		p {
+			margin-right: 10px;
+			margin-bottom: 0;
+		}
+	}
+	.cv-photo {
+		left: 50px;
+		top: 20px;
+	}
+	.main-box-modern {
+		grid-column: 1/-1;
+	}
+	.personal-data-boxes-modern {
+		grid-column: 1/-1;
+		@include photo-img;
+		color: #162d50;
+		display: flex;
+		flex-wrap: wrap;
+		padding: 1em 1em 0 1em;
+		.personal-data-box-modern {
+			display: flex;
+			gap: 10px;
+			width: 50%;
+			margin: 0;
+		}
+	}
+	h3 {
+		color: #162d50;
+		// background-color: #fff;
+		padding: 1em;
+		@include photo-img;
+		border: none;
+	}
+	.photo {
+		position: absolute;
+	}
+	.photo-1 {
+		top: 0;
+		left: 0;
+	}
+	.photo-2 {
+		right: 10%;
+		top: 30%;
+	}
+	.photo-3 {
+		left: 0;
+		top: 60%;
+	}
+	.photo-4 {
+		right: 10%;
+		top: 70%;
+	}
+}
+
 @media (width >= 568px) {
 	.third__step-boxes {
 		display: flex;

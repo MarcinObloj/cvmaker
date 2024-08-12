@@ -245,8 +245,109 @@ document.addEventListener('DOMContentLoaded', function () {
 				break;
 			case 'cv-modern':
 				cvPreviewElement.classList.add('cv-modern-style');
+
+				// Dodaj sekcję na zdjęcia
+				const photosSection = document.createElement('div');
+				photosSection.classList.add('photos-section');
+
+				// Utwórz cztery elementy img dla zdjęć
+				for (let i = 1; i <= 4; i++) {
+					const photo = document.createElement('img');
+					photo.src = `./dist/img/${i}.png`; // Ustaw ścieżkę do zdjęć
+					photo.classList.add(`photo-${i}`);
+					photo.classList.add(`photo`);
+					photo.alt = `Zdjęcie ${i}`; // Dodaj tekst alternatywny
+					photosSection.appendChild(photo);
+				}
+
+				// Dodaj sekcję zdjęć do cv-preview
+				cvPreviewElement.prepend(photosSection);
+
+				// Dodaj inne sekcje dla cv-modern
+				const personalInfoBoxesModern = document.createElement('div');
+				personalInfoBoxesModern.classList.add('personal-info-boxes-modern');
+
+				const firstNameModern = document.getElementById('preview-first-name');
+				const lastNameModern = document.getElementById('preview-last-name');
+				const jobTitleModern = document.getElementById('preview-job-title');
+
+				if (jobTitleModern && firstNameModern && lastNameModern) {
+					personalInfoBoxesModern.appendChild(jobTitleModern);
+					personalInfoBoxesModern.appendChild(firstNameModern);
+					personalInfoBoxesModern.appendChild(lastNameModern);
+
+					cvPreviewElement.prepend(personalInfoBoxesModern);
+				}
+
+				// Tworzenie personal-data-box dla modern
+				const personalDataBoxModern = document.createElement('div');
+				personalDataBoxModern.classList.add('personal-data-boxes-modern');
+
+				const sectionsModern = [
+					{ id: 'preview-email', icon: 'fa-envelope' },
+					{ id: 'preview-phone', icon: 'fa-phone' },
+					{ id: 'preview-city', icon: 'fa-city' },
+					{ id: 'preview-postal-code', icon: 'fa-map-marker-alt' },
+				];
+
+				sectionsModern.forEach((section) => {
+					const sectionElement = document.getElementById(section.id);
+					if (sectionElement) {
+						const iconElement = document.createElement('i');
+						iconElement.classList.add('fa', section.icon);
+						sectionElement.classList.add('personal-data-box-modern');
+						sectionElement.prepend(iconElement);
+						personalDataBoxModern.appendChild(sectionElement);
+					}
+				});
+
+				const previewSummaryModern = document.getElementById('preview-summary');
+				if (previewSummaryModern) {
+					previewSummaryModern.insertAdjacentElement(
+						'afterend',
+						personalDataBoxModern
+					);
+				}
+
+				const mainBoxModern = document.createElement('div');
+				mainBoxModern.classList.add('main-box-modern');
+
+				const mainBoxLeftModern = document.createElement('div');
+				mainBoxLeftModern.classList.add('main-box-left-modern');
+
+				const sectionsLeftModern = [
+					'preview-summary',
+					'preview-education',
+					'preview-skills',
+					'preview-courses',
+				];
+
+				sectionsLeftModern.forEach((id) => {
+					const sectionElement = document.getElementById(id);
+					if (sectionElement) {
+						mainBoxLeftModern.appendChild(sectionElement);
+					}
+				});
+
+				mainBoxModern.appendChild(mainBoxLeftModern);
+
+				const mainBoxRightModern = document.createElement('div');
+				mainBoxRightModern.classList.add('main-box-right-modern');
+
+				const sectionsRightModern = ['preview-languages', 'preview-hobbies'];
+
+				sectionsRightModern.forEach((id) => {
+					const sectionElement = document.getElementById(id);
+					if (sectionElement) {
+						mainBoxRightModern.appendChild(sectionElement);
+					}
+				});
+
+				mainBoxModern.appendChild(mainBoxRightModern);
+
+				cvPreviewElement.appendChild(mainBoxModern);
+
 				break;
-			// Dodaj kolejne przypadki dla innych szablonów
 		}
 	}
 });
