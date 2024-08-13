@@ -3,15 +3,17 @@
 @use './reset' as *;
 
 @mixin photo-img {
-	background-image: url('../../dist/img/rect12435.svg');
+	background-image: url('../../dist/img/Group15.svg');
 	background-size: cover;
-	width: 100%;
-
-	// background-position: center;
+	background-repeat: no-repeat;
+	width: 100%; /* lub auto */
+	// min-height: 200px; /* lub odpowiednia wartość */
+	border: none;
+	background-position: center right;
 }
 .cv-classic-style {
 	border: 10px solid #0086de !important;
-	height: 100vh;
+
 	.personal {
 		&-info-boxes {
 			display: flex;
@@ -474,6 +476,7 @@
 		padding: 1em;
 		@include photo-img;
 		border: none;
+		width: 60%;
 	}
 	.photo {
 		position: absolute;
@@ -495,7 +498,65 @@
 		top: 70%;
 	}
 }
+.cv-creative-style {
+	padding: 0;
+	position: relative;
+	display: flex;
+	.cv-photo {
+		left: 45%;
+	}
 
+	h3 {
+		// font-size: 20px;
+		text-transform: uppercase;
+	}
+
+	.main-box-left-creative {
+		width: 65%;
+		padding: 20px;
+		color: #345ab3;
+
+		h3 {
+			border-bottom: 1px solid #1a409a;
+		}
+		.personal-info-creative {
+			font-size: 28px;
+			text-transform: uppercase;
+			border-bottom: 3px solid #1a409a;
+			margin-left: 20px;
+			margin-bottom: 20px;
+			p {
+				margin-bottom: 10px;
+				font-weight: bold;
+			}
+			#preview-job-title {
+				font-size: 20px;
+				font-weight: 100;
+				text-transform: capitalize;
+			}
+		}
+	}
+	.main-box-right-creative {
+		color: #fff;
+		padding: 20px;
+		width: 35%;
+		background-color: #1a409a;
+		.personal-data-box-creative {
+			&-item {
+				display: flex;
+				gap: 10px;
+			}
+		}
+	}
+}
+
+@media (max-width: 650px) {
+	.cv-modern-style {
+		h3 {
+			width: 100%;
+		}
+	}
+}
 @media (width >= 568px) {
 	.third__step-boxes {
 		display: flex;

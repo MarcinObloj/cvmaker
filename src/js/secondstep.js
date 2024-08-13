@@ -348,6 +348,94 @@ document.addEventListener('DOMContentLoaded', function () {
 				cvPreviewElement.appendChild(mainBoxModern);
 
 				break;
+			case 'cv-creative':
+				cvPreviewElement.classList.add('cv-creative-style');
+
+				// Tworzenie diva opakowującego imię, nazwisko i job title
+				const personalInfoCreative = document.createElement('div');
+				personalInfoCreative.classList.add('personal-info-creative');
+
+				const firstNameCreative = document.getElementById('preview-first-name');
+				const lastNameCreative = document.getElementById('preview-last-name');
+				const jobTitleCreative = document.getElementById('preview-job-title');
+
+				if (jobTitleCreative && firstNameCreative && lastNameCreative) {
+					personalInfoCreative.appendChild(jobTitleCreative);
+					personalInfoCreative.appendChild(firstNameCreative);
+					personalInfoCreative.appendChild(lastNameCreative);
+
+					// Dodanie personal-info-creative do main-box-left
+				}
+
+				// Tworzenie diva opakowującego sekcje z ikonkami
+				const personalDataBoxCreative = document.createElement('div');
+				personalDataBoxCreative.classList.add('personal-data-box-creative');
+
+				const sectionsCreative = [
+					{ id: 'preview-email', icon: 'fa-envelope' },
+					{ id: 'preview-phone', icon: 'fa-phone' },
+					{ id: 'preview-city', icon: 'fa-city' },
+					{ id: 'preview-postal-code', icon: 'fa-map-marker-alt' },
+				];
+
+				sectionsCreative.forEach((section) => {
+					const sectionElement = document.getElementById(section.id);
+					if (sectionElement) {
+						const iconElement = document.createElement('i');
+						iconElement.classList.add('fa', section.icon);
+						sectionElement.classList.add('personal-data-box-creative-item');
+						sectionElement.prepend(iconElement);
+						personalDataBoxCreative.appendChild(sectionElement);
+					}
+				});
+
+				// Tworzenie main-box-left i dodanie odpowiednich sekcji
+				const mainBoxLeftCreative = document.createElement('div');
+				mainBoxLeftCreative.classList.add('main-box-left-creative');
+
+				// Dodanie personal-info-creative do main-box-left
+				mainBoxLeftCreative.appendChild(personalInfoCreative);
+
+				// Sekcje do main-box-left
+				const sectionsLeftCreative = [
+					'preview-summary', // Podsumowanie zawodowe
+					'preview-education', // Wykształcenie
+					'preview-skills', // Umiejętności
+				];
+
+				sectionsLeftCreative.forEach((id) => {
+					const sectionElement = document.getElementById(id);
+					if (sectionElement) {
+						mainBoxLeftCreative.appendChild(sectionElement);
+					}
+				});
+
+				// Tworzenie main-box-right i dodanie odpowiednich sekcji
+				const mainBoxRightCreative = document.createElement('div');
+				mainBoxRightCreative.classList.add('main-box-right-creative');
+
+				// Najpierw dodanie personalDataBoxCreative na górze main-box-right
+				mainBoxRightCreative.appendChild(personalDataBoxCreative);
+
+				// Sekcje do main-box-right
+				const sectionsRightCreative = [
+					'preview-courses', // Kursy i certyfikaty
+					'preview-languages', // Języki
+					'preview-hobbies', // Hobby
+				];
+
+				sectionsRightCreative.forEach((id) => {
+					const sectionElement = document.getElementById(id);
+					if (sectionElement) {
+						mainBoxRightCreative.appendChild(sectionElement);
+					}
+				});
+
+				// Dodanie main-box-left i main-box-right bezpośrednio do cv-creative-style
+				cvPreviewElement.appendChild(mainBoxLeftCreative);
+				cvPreviewElement.appendChild(mainBoxRightCreative);
+
+				break;
 		}
 	}
 });
