@@ -3,7 +3,7 @@ const swiper = new Swiper('.slider-wrapper', {
 	grabCursor: true,
 	spaceBetween: 30,
 
-	// If we need pagination
+	
 	pagination: {
 		el: '.swiper-pagination',
 		clickable: true,
@@ -15,7 +15,7 @@ const swiper = new Swiper('.slider-wrapper', {
 		nextEl: '.swiper-button-next',
 		prevEl: '.swiper-button-prev',
 	},
-	// Responsive breakpoints
+	
 	breakpoints: {
 		0: {
 			slidesPerView: 1,
@@ -24,5 +24,5 @@ const swiper = new Swiper('.slider-wrapper', {
 			slidesPerView: 2,
 		},
 	},
-	// And if we need scrollbar
+	
 });

@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
             console.log('Form submit event triggered');
 
-            // Resetowanie wiadomości
+            
             document.querySelector('.error').textContent = '';
             document.querySelector('.success').textContent = '';
 
@@ -39,24 +39,24 @@ document.addEventListener('DOMContentLoaded', function () {
                     return response.json();
                 })
                 .then((data) => {
-                    // Zakładając, że `data` zawiera `userId` i `username`
+            
                     const userId = data.userId;
                     const userName = data.username;
 
-                    // Przechowywanie danych w sessionStorage
+                    
                     sessionStorage.setItem('userId', userId);
                     sessionStorage.setItem('userName', userName);
 
-                    // Przechowywanie tokenu w localStorage
+                    
                     localStorage.setItem('sessionToken', data.token);
 
                     console.log('Login successful, setting session data');
 
-                    // Ustawienie wygaśnięcia sesji (np. na 10 minut)
-                    const sessionExpiration = new Date().getTime() + (1000 * 60 * 10); // 10 minut
+                    
+                    const sessionExpiration = new Date().getTime() + (1000 * 60 * 10); 
                     sessionStorage.setItem('sessionExpiration', sessionExpiration);
 
-                    // Przekierowanie na userpanel.html
+                    
                     window.location.href = 'userpanel.html';
                 })
                 .catch((error) => {
@@ -64,7 +64,7 @@ document.addEventListener('DOMContentLoaded', function () {
                         'Logowanie nie powiodło się: ' + error.message;
                 })
                 .finally(() => {
-                    loginButton.disabled = false; // Ponowne włączenie przycisku po zakończeniu żądania
+                    loginButton.disabled = false; 
                 });
         });
 });

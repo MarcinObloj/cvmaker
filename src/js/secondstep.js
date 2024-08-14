@@ -19,7 +19,7 @@ function insertTag(tag) {
 		textarea.value = before + tag + after;
 		textarea.selectionStart = textarea.selectionEnd = start + tag.length / 2;
 		textarea.focus();
-		updatePreview({ target: textarea }); // Update preview after inserting tag
+		updatePreview({ target: textarea }); 
 	}
 }
 
@@ -391,9 +391,9 @@ document.addEventListener('DOMContentLoaded', function () {
 				mainBoxLeftCreative.appendChild(personalInfoCreative);
 
 				const sectionsLeftCreative = [
-					'preview-summary', // Podsumowanie zawodowe
-					'preview-education', // Wykształcenie
-					'preview-skills', // Umiejętności
+					'preview-summary', 
+					'preview-education', 
+					'preview-skills', 
 				];
 
 				sectionsLeftCreative.forEach((id) => {
@@ -496,7 +496,7 @@ document.addEventListener('DOMContentLoaded', function () {
 						if (idContainer) {
 							idContainer.appendChild(infoContainer);
 
-							// Przeniesienie treści (p) na końcu idContainer
+							
 							const pElement = sectionElement.querySelector('p');
 							if (pElement) {
 								idContainer.appendChild(pElement);

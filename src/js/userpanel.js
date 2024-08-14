@@ -1,11 +1,11 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // Pobieranie nazwy użytkownika i userId z sessionStorage
+    
     const userName = sessionStorage.getItem('userName');
     const userId = sessionStorage.getItem('userId');
 
-    // Sprawdzanie, czy nazwa użytkownika jest dostępna
+   
     if (userName) {
-        // Ustawianie nazwy użytkownika w elementach HTML
+       
         document.getElementById('userStrong').textContent = userName;
         document.getElementById('userGreeting').textContent = userName;
     } else {
@@ -46,7 +46,6 @@ document.addEventListener('DOMContentLoaded', () => {
         cvBoxesContainer.appendChild(cvBox);
     }
 
-    // Funkcja do pobrania wszystkich CV dla użytkownika
     function loadUserCvFiles(userId) {
         fetch(`http://localhost:8080/api/cvfile/list/${userId}`)
             .then((response) => {
@@ -65,7 +64,7 @@ document.addEventListener('DOMContentLoaded', () => {
             });
     }
 
-    // Pobranie userId z sessionStorage i załadowanie CV
+    
     if (userId) {
         loadUserCvFiles(userId);
     } else {
@@ -73,12 +72,11 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 });
 
-// Funkcja do pobierania CV
+
 function downloadCv(cvFileId) {
     window.location.href = `http://localhost:8080/api/cvfile/download/${cvFileId}`;
 }
 
-// Funkcja do usuwania CV
 function deleteCv(cvFileId) {
     fetch(`http://localhost:8080/api/cvfile/delete/${cvFileId}`, {
         method: 'DELETE',

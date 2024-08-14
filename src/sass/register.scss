@@ -9,7 +9,7 @@ main {
 	justify-content: center;
 	align-items: center;
 }
-.reset{
+.reset {
 	height: 80vh;
 }
 
@@ -90,7 +90,7 @@ main {
 	.fa {
 		position: absolute;
 		left: 15px;
-		top: 35px;
+		top: 45px;
 		font-size: 2rem;
 		color: var(--primary-300, #696d73);
 	}
@@ -105,38 +105,33 @@ main {
 		}
 	}
 }
-@media (width <= 310px) {
-	.form-box {
-		.fa {
-			left: 10px;
-			top: 35px;
-		}
-		.fa-user {
-			top: 73px;
-		}
-		.icon{
-			top: 55px;
+@media (width <= 426px) {
+	.login {
+		.form-box {
+			.fa-user {
+				top: 67px;
+			}
 		}
 	}
 }
-@media (  310px <= width <= 390px) {
-	.form-box {
-		
-		.fa-user {
-			top: 55px;
-		}
-		.icon{
-			top: 35px;
-		}
-	}
-}
+// @media (  310px <= width <= 390px) {
+// 	.form-box {
+
+// 		.fa-user {
+// 			top: 55px;
+// 		}
+// 		.icon{
+// 			top: 35px;
+// 		}
+// 	}
+// }
 
 @media (width >= 992px) {
 	.message {
 		font-size: 2rem;
 	}
 	main {
-		height: 80vh;
+		height: 100vh;
 	}
 	a,
 	.form-group-label,
@@ -151,7 +146,7 @@ main {
 		.fa {
 			position: absolute;
 			left: 20px;
-			top: 45px;
+			top: 55px;
 			font-size: 3rem;
 			color: var(--primary-300, #696d73);
 		}

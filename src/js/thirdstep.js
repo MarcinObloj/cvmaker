@@ -20,7 +20,7 @@ document
 							const url = window.URL.createObjectURL(blob);
 							const a = document.createElement('a');
 							a.href = url;
-							a.download = 'cv-file.pdf'; // This should be dynamically set if needed
+							a.download = 'cv-file.pdf'; 
 							document.body.appendChild(a);
 							a.click();
 							a.remove();

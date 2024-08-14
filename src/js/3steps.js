@@ -51,10 +51,9 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 });
 document.addEventListener('DOMContentLoaded', function() {
-    // Wybierz wszystkie kontenery text-area-box
+
     const textAreaContainers = document.querySelectorAll('.text-area-box');
 
-    // Funkcja do formatowania tekstu
     function formatText(textarea, tag) {
         const startTag = `<${tag}>`;
         const endTag = `</${tag}>`;
@@ -70,7 +69,6 @@ document.addEventListener('DOMContentLoaded', function() {
         textarea.value = newText;
     }
 
-    // Funkcja do formatowania list
     function formatList(textarea, isOrdered) {
         const startTag = isOrdered ? '<ol><li>' : '<ul><li>';
         const endTag = isOrdered ? '</li></ol>' : '</li></ul>';
@@ -86,7 +84,7 @@ document.addEventListener('DOMContentLoaded', function() {
         textarea.value = newText;
     }
 
-    // Iteruj przez wszystkie kontenery text-area-box
+    
     textAreaContainers.forEach(container => {
         const textarea = container.querySelector('textarea');
         const btnBold = container.querySelector('.btn-bold');

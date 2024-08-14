@@ -4,7 +4,7 @@ document.getElementById('registerForm').addEventListener('submit', function (eve
 
     console.log('Form submit event triggered');
 
-    // Resetowanie wiadomości
+  
     document.querySelector('.error').textContent = '';
     document.querySelector('.success').textContent = '';
 
@@ -43,6 +43,6 @@ document.getElementById('registerForm').addEventListener('submit', function (eve
         document.querySelector('.error').textContent = error.message;
     })
     .finally(() => {
-        registerButton.disabled = false; // Ponowne włączenie przycisku po zakończeniu żądania
+        registerButton.disabled = false; 
     });
 });

@@ -93,7 +93,7 @@ document.addEventListener('DOMContentLoaded', function () {
         if (userPanelLink) userPanelLink.style.display = 'none';
     }
 
-    // Powtórz dla wersji mobilnej
+
     const mobileLoginLink = document.querySelector(
         '.nav__mobile-item.login'
     );
