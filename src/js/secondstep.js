@@ -1,4 +1,3 @@
-// Function to update the CV preview in real-time
 function updatePreview(event) {
 	const inputId = event.target.id;
 	const inputValue = event.target.value;
@@ -9,7 +8,6 @@ function updatePreview(event) {
 	}
 }
 
-// Function to insert HTML tags at the cursor position in the textarea
 function insertTag(tag) {
 	const textarea = document.querySelector('textarea:focus');
 	if (textarea) {
@@ -25,13 +23,11 @@ function insertTag(tag) {
 	}
 }
 
-// Attach event listeners to all input and textarea elements
 const inputs = document.querySelectorAll('input, textarea');
 inputs.forEach((input) => {
 	input.addEventListener('input', updatePreview);
 });
 
-// Attach event listeners to formatting buttons
 document
 	.querySelector('.btn-bold')
 	.addEventListener('click', () => insertTag('<b></b>'));
@@ -48,8 +44,7 @@ document
 	.querySelector('.btn-ordered-list')
 	.addEventListener('click', () => insertTag('<ol><li></li></ol>'));
 
-// Handle image upload
-let uploadedPhoto = null; // Zmienna do przechowywania pliku zdjęcia
+let uploadedPhoto = null;
 document
 	.getElementById('photo-upload')
 	.addEventListener('change', function (event) {
@@ -65,83 +60,105 @@ document
 		}
 	});
 
-// On document load, handle image URL for background
-// document.addEventListener('DOMContentLoaded', () => {
-// 	document
-// 		.getElementById('save-cv')
-// 		.addEventListener('click', function (event) {
-// 			event.preventDefault();
+document.addEventListener('DOMContentLoaded', () => {
+	document
+		.getElementById('save-cv')
+		.addEventListener('click', async function (event) {
+			event.preventDefault();
 
-// 			console.log('Kliknięcie zarejestrowane!');
+			const cvElement = document.getElementById('cv-preview');
+			const { jsPDF } = window.jspdf;
 
-// 			const cvContent = document.getElementById('cv-preview').outerHTML;
-// 			console.log('Pobrany HTML:', cvContent);
+			const container = document.createElement('div');
+			container.style.position = 'absolute';
+			container.style.left = '-9999px';
 
-// 			const formData = new FormData();
-// 			formData.append(
-// 				'cvContent',
-// 				new Blob([cvContent], { type: 'text/html' })
-// 			);
-// 			formData.append('userId', sessionStorage.getItem('userId')); // Używaj `getItem` do pobrania wartości
+			const cvElementStyles = window.getComputedStyle(cvElement);
+			container.style.width = '210mm';
+			container.style.minHeight = '297mm';
+			container.style.zoom = 1;
 
-// 			if (uploadedPhoto) {
-// 				formData.append('photo', uploadedPhoto); // Dodanie przesłanego zdjęcia do FormData
-// 			}
+			const clonedElement = cvElement.cloneNode(true);
+			clonedElement.style.width = '210mm';
+			clonedElement.style.minHeight = '297mm';
+			container.appendChild(clonedElement);
+			document.body.appendChild(container);
 
-// 			console.log('Rozpoczynanie fetch...');
+			const canvas = await html2canvas(container, {
+				scale: 2,
+				useCORS: true,
+				logging: false,
+				letterSpacing: 1,
+				scrollY: 0,
+			});
 
-// 			fetch('http://localhost:8080/api/cvfile/uploadPdf', {
-// 				method: 'POST',
-// 				body: formData,
-// 			})
-// 				.then((response) => {
-// 					console.log('Fetch zakończony. Status odpowiedzi:', response.status);
+			document.body.removeChild(container);
 
-// 					if (!response.ok) {
-// 						console.error('Fetch error:', response);
-// 						return response.text().then((errorText) => {
-// 							throw new Error(errorText);
-// 						});
-// 					}
+			const pdf = new jsPDF('portrait', 'mm', 'a4');
+			const imgData = canvas.toDataURL('image/jpeg');
+			const imgWidth = 210;
+			const pageHeight = 297;
+			const imgHeight = (canvas.height * imgWidth) / canvas.width;
 
-// 					return response.text(); // Pobierz odpowiedź jako tekst
-// 				})
-// 				.then((text) => {
-// 					console.log('Odpowiedź serwera:', text);
+			let position = 0;
+			let remainingHeight = imgHeight;
 
-// 					// Parsowanie odpowiedzi jako JSON, jeśli odpowiedź jest w formacie JSON
-// 					try {
-// 						const data = JSON.parse(text);
+			while (remainingHeight > 0) {
+				pdf.addImage(
+					imgData,
+					'JPEG',
+					0,
+					position,
+					imgWidth,
+					Math.min(pageHeight, remainingHeight)
+				);
+				remainingHeight -= pageHeight;
 
-// 						// Sprawdź, czy odpowiedź zawiera `cvFileId` i zapisz do `sessionStorage`
-// 						if (data.cvFileId) {
-// 							sessionStorage.setItem('cvFileId', data.cvFileId);
-// 							console.log('cvFileId zapisany w sessionStorage:', data.cvFileId);
-// 						}
-// 					} catch (e) {
-// 						console.error('Błąd parsowania odpowiedzi:', e);
-// 					}
+				if (remainingHeight > 0) {
+					pdf.addPage();
+					position = Math.min(0, remainingHeight - pageHeight);
+				}
+			}
 
-// 					alert('CV saved successfully!');
-// 					// Po zapisaniu CV na serwerze, przekierowanie do trzeciego kroku
-// 					window.location.href = 'thirdstep.html';
-// 				})
-// 				.catch((error) => {
-// 					console.error('Błąd podczas przetwarzania odpowiedzi:', error);
-// 					alert('Wystąpił błąd podczas zapisywania CV: ' + error.message);
-// 				});
-// 		});
-// });
+			const pdfBlob = pdf.output('blob');
+
+			try {
+				const formData = new FormData();
+				formData.append('cvFile', pdfBlob, 'cv.pdf');
+				formData.append('userId', sessionStorage.getItem('userId'));
+
+				const response = await fetch(
+					'http://localhost:8080/api/cvfile/uploadPdf',
+					{
+						method: 'POST',
+						body: formData,
+					}
+				);
+
+				if (response.ok) {
+					const data = await response.json();
+					if (data.cvFileId) {
+						sessionStorage.setItem('cvFileId', data.cvFileId);
+					}
+					alert('CV saved successfully!');
+					window.location.href = 'thirdstep.html';
+				} else {
+					throw new Error('Network response was not ok.');
+				}
+			} catch (error) {
+				console.error('Błąd podczas przesyłania PDF:', error);
+				alert('Wystąpił błąd podczas zapisywania CV: ' + error.message);
+			}
+		});
+});
 
 function getParameterByName(name) {
 	const urlParams = new URLSearchParams(window.location.search);
 	return urlParams.get(name);
 }
 document.addEventListener('DOMContentLoaded', function () {
-	// Odczytaj wybrany szablon z localStorage
 	const selectedTemplate = localStorage.getItem('selectTemplate');
 
-	// Załaduj odpowiedni plik CSS lub dodaj odpowiednią klasę do elementu .cv-preview
 	if (selectedTemplate) {
 		const cvPreviewElement = document.querySelector('.cv-preview');
 
@@ -154,25 +171,20 @@ document.addEventListener('DOMContentLoaded', function () {
 				const lastName = document.getElementById('preview-last-name');
 				const jobTitle = document.getElementById('preview-job-title');
 
-				// Tworzenie personal-info-boxes i przeniesienie do niego elementów
 				const personalInfoBoxes = document.createElement('div');
 				personalInfoBoxes.classList.add('personal-info-boxes');
 
 				if (jobTitle && firstName && lastName) {
-					// Przenoszenie elementów do personal-info-boxes
 					personalInfoBoxes.appendChild(jobTitle);
 					personalInfoBoxes.appendChild(firstName);
 					personalInfoBoxes.appendChild(lastName);
 
-					// Dodanie personal-info-boxes na górze cv-preview
 					cvPreviewElement.prepend(personalInfoBoxes);
 				}
 
-				// Tworzenie personal-data-box
 				const personalDataBox = document.createElement('div');
 				personalDataBox.classList.add('personal-data-boxes');
 
-				// Definicje sekcji z ikonami Font Awesome (bez imienia i nazwiska)
 				const sections = [
 					{ id: 'preview-email', icon: 'fa-envelope' },
 					{ id: 'preview-phone', icon: 'fa-phone' },
@@ -180,7 +192,6 @@ document.addEventListener('DOMContentLoaded', function () {
 					{ id: 'preview-postal-code', icon: 'fa-map-marker-alt' },
 				];
 
-				// Dodawanie sekcji do personalDataBox
 				sections.forEach((section) => {
 					const sectionElement = document.getElementById(section.id);
 					if (sectionElement) {
@@ -192,17 +203,14 @@ document.addEventListener('DOMContentLoaded', function () {
 					}
 				});
 
-				// Umieszczenie personal-data-box za sekcją preview-summary
 				const previewSummary = document.getElementById('preview-summary');
 				if (previewSummary) {
 					previewSummary.insertAdjacentElement('afterend', personalDataBox);
 				}
 
-				// Tworzenie main-box i przeniesienie do niego main-box-left i main-box-right
 				const mainBox = document.createElement('div');
 				mainBox.classList.add('main-box');
 
-				// Tworzenie main-box-left i przeniesienie odpowiednich sekcji
 				const mainBoxLeft = document.createElement('div');
 				mainBoxLeft.classList.add('main-box-left');
 
@@ -223,7 +231,6 @@ document.addEventListener('DOMContentLoaded', function () {
 				// Dodanie main-box-left do main-box
 				mainBox.appendChild(mainBoxLeft);
 
-				// Tworzenie main-box-right i przeniesienie odpowiednich sekcji
 				const mainBoxRight = document.createElement('div');
 				mainBoxRight.classList.add('main-box-right');
 
@@ -236,34 +243,28 @@ document.addEventListener('DOMContentLoaded', function () {
 					}
 				});
 
-				// Dodanie main-box-right do main-box
 				mainBox.appendChild(mainBoxRight);
 
-				// Dodanie main-box do cv-preview
 				cvPreviewElement.appendChild(mainBox);
 
 				break;
 			case 'cv-modern':
 				cvPreviewElement.classList.add('cv-modern-style');
 
-				// Dodaj sekcję na zdjęcia
 				const photosSection = document.createElement('div');
 				photosSection.classList.add('photos-section');
 
-				// Utwórz cztery elementy img dla zdjęć
 				for (let i = 1; i <= 4; i++) {
 					const photo = document.createElement('img');
-					photo.src = `./dist/img/${i}.png`; // Ustaw ścieżkę do zdjęć
+					photo.src = `./dist/img/${i}.png`;
 					photo.classList.add(`photo-${i}`);
 					photo.classList.add(`photo`);
-					photo.alt = `Zdjęcie ${i}`; // Dodaj tekst alternatywny
+					photo.alt = `Zdjęcie ${i}`;
 					photosSection.appendChild(photo);
 				}
 
-				// Dodaj sekcję zdjęć do cv-preview
 				cvPreviewElement.prepend(photosSection);
 
-				// Dodaj inne sekcje dla cv-modern
 				const personalInfoBoxesModern = document.createElement('div');
 				personalInfoBoxesModern.classList.add('personal-info-boxes-modern');
 
@@ -279,7 +280,6 @@ document.addEventListener('DOMContentLoaded', function () {
 					cvPreviewElement.prepend(personalInfoBoxesModern);
 				}
 
-				// Tworzenie personal-data-box dla modern
 				const personalDataBoxModern = document.createElement('div');
 				personalDataBoxModern.classList.add('personal-data-boxes-modern');
 
@@ -351,7 +351,6 @@ document.addEventListener('DOMContentLoaded', function () {
 			case 'cv-creative':
 				cvPreviewElement.classList.add('cv-creative-style');
 
-				// Tworzenie diva opakowującego imię, nazwisko i job title
 				const personalInfoCreative = document.createElement('div');
 				personalInfoCreative.classList.add('personal-info-creative');
 
@@ -363,11 +362,8 @@ document.addEventListener('DOMContentLoaded', function () {
 					personalInfoCreative.appendChild(jobTitleCreative);
 					personalInfoCreative.appendChild(firstNameCreative);
 					personalInfoCreative.appendChild(lastNameCreative);
-
-					// Dodanie personal-info-creative do main-box-left
 				}
 
-				// Tworzenie diva opakowującego sekcje z ikonkami
 				const personalDataBoxCreative = document.createElement('div');
 				personalDataBoxCreative.classList.add('personal-data-box-creative');
 
@@ -389,14 +385,11 @@ document.addEventListener('DOMContentLoaded', function () {
 					}
 				});
 
-				// Tworzenie main-box-left i dodanie odpowiednich sekcji
 				const mainBoxLeftCreative = document.createElement('div');
 				mainBoxLeftCreative.classList.add('main-box-left-creative');
 
-				// Dodanie personal-info-creative do main-box-left
 				mainBoxLeftCreative.appendChild(personalInfoCreative);
 
-				// Sekcje do main-box-left
 				const sectionsLeftCreative = [
 					'preview-summary', // Podsumowanie zawodowe
 					'preview-education', // Wykształcenie
@@ -410,18 +403,15 @@ document.addEventListener('DOMContentLoaded', function () {
 					}
 				});
 
-				// Tworzenie main-box-right i dodanie odpowiednich sekcji
 				const mainBoxRightCreative = document.createElement('div');
 				mainBoxRightCreative.classList.add('main-box-right-creative');
 
-				// Najpierw dodanie personalDataBoxCreative na górze main-box-right
 				mainBoxRightCreative.appendChild(personalDataBoxCreative);
 
-				// Sekcje do main-box-right
 				const sectionsRightCreative = [
-					'preview-courses', // Kursy i certyfikaty
-					'preview-languages', // Języki
-					'preview-hobbies', // Hobby
+					'preview-courses',
+					'preview-languages',
+					'preview-hobbies',
 				];
 
 				sectionsRightCreative.forEach((id) => {
@@ -431,9 +421,116 @@ document.addEventListener('DOMContentLoaded', function () {
 					}
 				});
 
-				// Dodanie main-box-left i main-box-right bezpośrednio do cv-creative-style
 				cvPreviewElement.appendChild(mainBoxLeftCreative);
 				cvPreviewElement.appendChild(mainBoxRightCreative);
+
+				break;
+			case 'cv-mini':
+				cvPreviewElement.classList.add('cv-mini-style');
+
+				const mainBoxMiniLeft = document.createElement('div');
+				mainBoxMiniLeft.classList.add('main-box-mini-left');
+
+				const mainBoxMiniRight = document.createElement('div');
+				mainBoxMiniRight.classList.add('main-box-mini-right');
+
+				const personalDataBoxMini = document.createElement('div');
+				personalDataBoxMini.classList.add('personal-data-box-mini');
+
+				const sectionsMini = [
+					{ id: 'preview-email', icon: 'fa-envelope' },
+					{ id: 'preview-phone', icon: 'fa-phone' },
+					{ id: 'preview-city', icon: 'fa-city' },
+					{ id: 'preview-postal-code', icon: 'fa-map-marker-alt' },
+				];
+
+				sectionsMini.forEach((section) => {
+					const sectionElement = document.getElementById(section.id);
+					if (sectionElement) {
+						const iconElement = document.createElement('i');
+						iconElement.classList.add('fa', section.icon);
+						sectionElement.classList.add('personal-data-box-mini-item');
+						sectionElement.prepend(iconElement);
+						personalDataBoxMini.appendChild(sectionElement);
+					}
+				});
+
+				mainBoxMiniLeft.appendChild(personalDataBoxMini);
+
+				const sectionsToAdd = [
+					'preview-skills',
+					'preview-courses',
+					'preview-hobbies',
+				];
+
+				sectionsToAdd.forEach((id) => {
+					const element = document.getElementById(id);
+					if (element) {
+						const hrElement = document.createElement('hr');
+						element.appendChild(hrElement);
+						mainBoxMiniLeft.appendChild(element);
+					}
+				});
+
+				const sectionsToRight = [
+					'preview-summary',
+					'preview-education',
+					'preview-languages',
+				];
+
+				sectionsToRight.forEach((id) => {
+					const sectionElement = document.getElementById(id);
+					if (sectionElement) {
+						// Stworzenie div dla nagłówka
+						const infoContainer = document.createElement('div');
+						infoContainer.classList.add('cv-section-info');
+
+						const h3Element = sectionElement.querySelector('h3');
+						if (h3Element) {
+							const hrElement = document.createElement('hr');
+							infoContainer.appendChild(h3Element);
+							infoContainer.appendChild(hrElement);
+						}
+
+						const idContainer = document.getElementById(sectionElement.id);
+						if (idContainer) {
+							idContainer.appendChild(infoContainer);
+
+							// Przeniesienie treści (p) na końcu idContainer
+							const pElement = sectionElement.querySelector('p');
+							if (pElement) {
+								idContainer.appendChild(pElement);
+							}
+
+							mainBoxMiniRight.appendChild(idContainer);
+						}
+					}
+				});
+
+				cvPreviewElement.appendChild(mainBoxMiniLeft);
+				cvPreviewElement.appendChild(mainBoxMiniRight);
+
+				const authorContainer = document.createElement('div');
+				authorContainer.classList.add('cv-mini-style-author');
+
+				const photoElement = document.getElementById('preview-photo');
+				const firstNameElement = document.getElementById('preview-first-name');
+				const lastNameElement = document.getElementById('preview-last-name');
+				const jobTitleElement = document.getElementById('preview-job-title');
+
+				if (photoElement) authorContainer.appendChild(photoElement);
+
+				const nameContainer = document.createElement('div');
+				nameContainer.classList.add('cv-mini-style-author-name');
+
+				if (firstNameElement) nameContainer.appendChild(firstNameElement);
+				if (lastNameElement) nameContainer.appendChild(lastNameElement);
+
+				authorContainer.appendChild(nameContainer);
+
+				if (jobTitleElement) authorContainer.appendChild(jobTitleElement);
+
+				cvPreviewElement.prepend(authorContainer);
 
 				break;
 		}

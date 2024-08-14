@@ -70,3 +70,47 @@ cycleActiveClass();
 
 
 
+document.addEventListener('DOMContentLoaded', function () {
+    const sessionToken = localStorage.getItem('sessionToken');
+    console.log(sessionToken);
+    // Elementy nawigacji
+    const loginLink = document.querySelector('.nav__desktop-item.login');
+    const registerLink = document.querySelector(
+        '.nav__desktop-item.register'
+    );
+    const userPanelLink = document.querySelector(
+        '.nav__desktop-item.user-panel'
+    );
+
+    // Jeśli token sesji istnieje
+    if (sessionToken) {
+        if (loginLink) loginLink.style.display = 'none';
+        if (registerLink) registerLink.style.display = 'none';
+        if (userPanelLink) userPanelLink.style.display = 'block';
+    } else {
+        if (loginLink) loginLink.style.display = 'block';
+        if (registerLink) registerLink.style.display = 'block';
+        if (userPanelLink) userPanelLink.style.display = 'none';
+    }
+
+    // Powtórz dla wersji mobilnej
+    const mobileLoginLink = document.querySelector(
+        '.nav__mobile-item.login'
+    );
+    const mobileRegisterLink = document.querySelector(
+        '.nav__mobile-item.register'
+    );
+    const mobileUserPanelLink = document.querySelector(
+        '.nav__mobile-item.user-panel'
+    );
+
+    if (sessionToken) {
+        if (mobileLoginLink) mobileLoginLink.style.display = 'none';
+        if (mobileRegisterLink) mobileRegisterLink.style.display = 'none';
+        if (mobileUserPanelLink) mobileUserPanelLink.style.display = 'block';
+    } else {
+        if (mobileLoginLink) mobileLoginLink.style.display = 'block';
+        if (mobileRegisterLink) mobileRegisterLink.style.display = 'block';
+        if (mobileUserPanelLink) mobileUserPanelLink.style.display = 'none';
+    }
+});

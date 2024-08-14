@@ -20,20 +20,13 @@
 		<style>
 			#cv-preview {
 				box-sizing: border-box;
-				/* display: flex;
-				flex-direction: column; */
 			}
 			@page {
-				size: A4; /* Ustawia rozmiar strony na A4 */
-				/* margin: 20mm; Ustawia marginesy */
-			}
-
-			#cv-preview {
+				size: A4;
 			}
 
 			.cv-section {
 				page-break-inside: avoid;
-				/* page-break-before: always; Unika dzielenia sekcji na różne strony */
 			}
 		</style>
 	</head>
@@ -457,100 +450,6 @@
 				</div>
 			</div>
 		</main>
-		<script>
-			document.addEventListener('DOMContentLoaded', () => {
-				document
-					.getElementById('save-cv')
-					.addEventListener('click', async function (event) {
-						event.preventDefault();
-
-						const cvElement = document.getElementById('cv-preview');
-						const { jsPDF } = window.jspdf;
-
-						const container = document.createElement('div');
-						container.style.position = 'absolute';
-						container.style.left = '-9999px';
-
-						const cvElementStyles = window.getComputedStyle(cvElement);
-						container.style.width = '210mm';
-						container.style.minHeight = '297mm';
-						container.style.zoom = 1;
-
-						const clonedElement = cvElement.cloneNode(true);
-						clonedElement.style.width = '210mm';
-						clonedElement.style.minHeight = '297mm';
-						container.appendChild(clonedElement);
-						document.body.appendChild(container);
-
-						const canvas = await html2canvas(container, {
-							scale: 2, // Optymalna wartość skalowania
-							useCORS: true,
-							logging: false,
-							letterSpacing: 1,
-							scrollY: 0, // Upewnij się, że całość jest renderowana
-						});
-
-						document.body.removeChild(container);
-
-						const pdf = new jsPDF('portrait', 'mm', 'a4');
-						const imgData = canvas.toDataURL('image/jpeg');
-						const imgWidth = 210;
-						const pageHeight = 297;
-						const imgHeight = (canvas.height * imgWidth) / canvas.width;
-
-						let position = 0;
-						let remainingHeight = imgHeight;
-
-						while (remainingHeight > 0) {
-							pdf.addImage(
-								imgData,
-								'JPEG',
-								0,
-								position,
-								imgWidth,
-								Math.min(pageHeight, remainingHeight)
-							);
-							remainingHeight -= pageHeight;
-
-							if (remainingHeight > 0) {
-								pdf.addPage();
-								position = Math.min(0, remainingHeight - pageHeight);
-							}
-						}
-
-						const pdfBlob = pdf.output('blob');
-
-						try {
-							const formData = new FormData();
-							formData.append('cvFile', pdfBlob, 'cv.pdf');
-							formData.append('userId', sessionStorage.getItem('userId'));
-
-							const response = await fetch(
-								'http://localhost:8080/api/cvfile/uploadPdf',
-								{
-									method: 'POST',
-									body: formData,
-								}
-							);
-
-							if (response.ok) {
-								const data = await response.json();
-								if (data.cvFileId) {
-									sessionStorage.setItem('cvFileId', data.cvFileId);
-								}
-								alert('CV saved successfully!');
-								window.location.href = 'thirdstep.html';
-							} else {
-								throw new Error('Network response was not ok.');
-							}
-						} catch (error) {
-							console.error('Błąd podczas przesyłania PDF:', error);
-							alert('Wystąpił błąd podczas zapisywania CV: ' + error.message);
-						}
-					});
-			});
-		</script>
-
 		<script src="./dist/js/session.min.js"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.min.js"></script>
 
