@@ -9,12 +9,6 @@ CV Kreator to narzędzie do tworzenia profesjonalnych CV w szybki i łatwy spos�
 - **Tworzenie CV:** Użytkownik może wprowadzić swoje dane, takie jak wykształcenie, doświadczenie zawodowe, umiejętności, kursy i certyfikaty.
 - **Generowanie PDF:** Po wypełnieniu wszystkich sekcji, aplikacja umożliwia wygenerowanie CV w formacie PDF, gotowego do pobrania i użycia.
 
-## Struktura Plików
-
-- `index.html`: Strona główna aplikacji z menu nawigacyjnym.
-- `firststep.html`: Strona wyboru szablonu CV. Użytkownik może przejrzeć dostępne szablony i wybrać odpowiedni dla siebie.
-- `secondstep.html`: Strona wprowadzania danych osobowych. Użytkownik wypełnia formularze, które zostaną użyte do wygenerowania CV.
-
 ## Technologie
 
 - HTML5, CSS3
