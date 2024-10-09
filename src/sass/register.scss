@@ -21,7 +21,7 @@ main {
 		background-clip: text;
 		color: transparent;
 	}
-	.error {
+	.error-register {
 		color: tomato;
 	}
 }
@@ -104,6 +104,14 @@ main {
 			}
 		}
 	}
+}
+.input-error {
+	border: 2px solid #fc7272;
+	background-color: #fdc1c1;
+}
+
+.error {
+	color: #fc7272;
 }
 @media (width <= 426px) {
 	.login {

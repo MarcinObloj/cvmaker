@@ -234,10 +234,10 @@
 				&::before {
 					content: attr(data-content);
 					position: absolute;
-					top: -150%;
-					left: -250%;
+					top: 50%;
+					left: -300%;
 					padding: 1em;
-					width: 150px;
+					width: 200px;
 					text-align: center;
 					// left: 10px;
 					// transform: translate(-50%, -50%);
@@ -247,6 +247,7 @@
 					opacity: 0;
 					visibility: hidden;
 					font-size: 1.4rem;
+					z-index: 100;
 					transition: opacity 0.3s, visibility 0.3s;
 					&:nth-of-type(1) {
 						content: 'elo';
@@ -588,12 +589,12 @@
 			.cv-section-info {
 				margin-bottom: 10px;
 				display: flex;
-				align-items:center ;
+				align-items: center;
 				hr {
 					flex-grow: 1;
 					border: none;
-					border-top: 1px solid #000; 
-					margin: 0 10px; 
+					border-top: 1px solid #000;
+					margin: 0 10px;
 				}
 			}
 		}
@@ -769,6 +770,20 @@
 			gap: 1em;
 			.form-group {
 				width: 45%;
+			}
+		}
+	}
+}
+@media (width >= 768px) {
+	.main-step {
+		.form-group {
+			.input-title {
+				.form-group-info-box {
+					&::before {
+						font-size: 2rem;
+						width: 350px;
+					}
+				}
 			}
 		}
 	}

@@ -64,7 +64,10 @@
 }
 .nav__logo a span,
 .footer__logo a span {
-  color: #00767b;
+  background: var(--linear, linear-gradient(315deg, rgba(0, 173, 181, 0.6) 0%, rgba(0, 162, 170, 0.6) 9.09%, rgba(0, 152, 159, 0.6) 18.18%, rgba(0, 141, 148, 0.6) 27.27%, rgba(0, 131, 137, 0.6) 36.36%, rgba(21, 134, 140, 0.6) 45.45%, rgba(34, 138, 143, 0.6) 54.55%, rgba(44, 141, 146, 0.6) 63.64%, rgba(65, 158, 163, 0.6) 72.73%, rgba(85, 176, 181, 0.6) 81.82%, rgba(103, 194, 199, 0.6) 90.91%, rgba(122, 212, 217, 0.6) 100%));
+  -webkit-background-clip: text;
+          background-clip: text;
+  color: transparent;
   font-weight: bold;
 }
 
@@ -88,13 +91,16 @@
 }
 .nav a span,
 .footer a span {
-  color: #00767b;
-  font-weight: bold;
+  background: var(--linear, linear-gradient(315deg, rgba(0, 173, 181, 0.6) 0%, rgba(0, 162, 170, 0.6) 9.09%, rgba(0, 152, 159, 0.6) 18.18%, rgba(0, 141, 148, 0.6) 27.27%, rgba(0, 131, 137, 0.6) 36.36%, rgba(21, 134, 140, 0.6) 45.45%, rgba(34, 138, 143, 0.6) 54.55%, rgba(44, 141, 146, 0.6) 63.64%, rgba(65, 158, 163, 0.6) 72.73%, rgba(85, 176, 181, 0.6) 81.82%, rgba(103, 194, 199, 0.6) 90.91%, rgba(122, 212, 217, 0.6) 100%));
+  -webkit-background-clip: text;
+          background-clip: text;
+  color: transparent;
 }
 .nav a a:visited,
-.nav a a:active,
+.nav a a:active, .nav a a:hover,
 .footer a a:visited,
-.footer a a:active {
+.footer a a:active,
+.footer a a:hover {
   color: #00767b;
   font-weight: bold;
 }
@@ -261,6 +267,7 @@ html {
 
 a {
   text-decoration: none;
+  cursor: pointer;
 }
 
 img {
@@ -319,6 +326,7 @@ body {
   border-radius: 1.6rem;
   width: 40%;
   background: var(--btn-background-500, #fec85b);
+  color: rgb(34, 40, 49);
   text-align: center;
   font-weight: bold;
   margin: 2em auto;
@@ -329,9 +337,7 @@ body {
 }
 
 .btn-secondary {
-  position: absolute;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  display: block;
   text-decoration: none;
   color: rgb(34, 40, 49);
   font-weight: bold;
@@ -340,7 +346,9 @@ body {
   width: 40%;
   border-radius: 16px;
   border: 3px solid rgb(34, 40, 49);
-  margin-top: 3em;
+  margin: 0 auto;
+  margin-top: 1.5em;
+  text-align: center;
   transition: color 0.3s, border 0.3s;
 }
 .btn-secondary:hover {
@@ -349,9 +357,10 @@ body {
 }
 
 .btn-back {
-  border-radius: 1rem;
+  border-radius: 1.6rem;
   border: 3px solid var(--primary-700, #171b21);
-  padding: 1rem 2rem;
+  padding: 1em 2em;
+  color: rgb(34, 40, 49);
   background: transparent;
   font-weight: bold;
 }

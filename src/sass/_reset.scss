@@ -118,6 +118,11 @@ body {
 .section-heading {
 	text-transform: uppercase;
 }
+@media(width <= 650px){
+	.btn-primary{
+		width: 80%;
+	}
+}
 
 @media (width >= 968px) {
 	.btn-primary,.btn-back,

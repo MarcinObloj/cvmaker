@@ -16,12 +16,7 @@
 			rel="stylesheet"
 			href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
 		<link rel="stylesheet" href="./dist/css/thirdstep.min.css" />
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.min.js"></script>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
-		<!-- Dodaj jsPDF -->
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.72/pdfmake.min.js"></script>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.72/vfs_fonts.js"></script>
+
 		<style>
 			#cv-preview {
 				box-sizing: border-box;
@@ -63,7 +58,7 @@
 							<label for="job-title">Pożądany tytuł zawodowy </label>
 							<div
 								class="form-group-info-box"
-								data-content="Wpisz swoj pożadany tytuł  zawodowy">
+								data-content="Podaj nazwę stanowiska, na które aplikujesz. To może być stanowisko, które już zajmujesz, np. 'Specjalista ds. sprzedaży', lub to, które jest Twoim celem zawodowym, np. 'Kierownik działu marketingu'. Pamiętaj, aby tytuł był jasny i zrozumiały dla potencjalnego pracodawcy.">
 								<img src="./dist/img/info.svg" alt="" class="form-group-info" />
 							</div>
 						</div>
@@ -89,7 +84,9 @@
 					<div class="form-group">
 						<div class="input-title">
 							<label for="first-name">Imię</label>
-							<div class="form-group-info-box" data-content="Wpisz swoje imie">
+							<div
+								class="form-group-info-box"
+								data-content="Wpisz swoje pełne imię, którym się posługujesz w kontaktach oficjalnych. Pamiętaj, aby nie używać pseudonimów. Przykład: 'Marcin'.">
 								<img src="./dist/img/info.svg" alt="" class="form-group-info" />
 							</div>
 						</div>
@@ -105,7 +102,7 @@
 							<label for="last-name">Nazwisko</label>
 							<div
 								class="form-group-info-box"
-								data-content="Wpisz swoje nazwisko">
+								data-content="Podaj swoje nazwisko, tak jak pojawia się ono w dokumentach oficjalnych. Upewnij się, że zapis jest poprawny, aby uniknąć nieporozumień. Przykład: 'Obłój'.">
 								<img src="./dist/img/info.svg" alt="" class="form-group-info" />
 							</div>
 						</div>
@@ -119,7 +116,9 @@
 					<div class="form-group">
 						<div class="input-title">
 							<label for="email">Email</label>
-							<div class="form-group-info-box" data-content="Wpisz swoj email">
+							<div
+								class="form-group-info-box"
+								data-content="Wpisz adres email, którego regularnie używasz i który jest profesjonalny. Unikaj niepoważnych adresów, takich jak 'kwiatuszek88@mail.com'. Przykład: 'jan.kowalski@mail.com'.">
 								<img src="./dist/img/info.svg" alt="" class="form-group-info" />
 							</div>
 						</div>
@@ -135,11 +134,15 @@
 							<label for="phone">Numer telefonu</label>
 							<div
 								class="form-group-info-box"
-								data-content="Wpisz swoj numer telefonu">
+								data-content="Wprowadź swój aktualny numer telefonu w formacie międzynarodowym (jeśli planujesz aplikować za granicę) lub krajowym. Upewnij się, że numer jest aktualny i możliwy do kontaktu. Przykład: '+48 689 340 487'.">
 								<img src="./dist/img/info.svg" alt="" class="form-group-info" />
 							</div>
 						</div>
-						<input type="tel" id="phone" name="phone" placeholder="689340487" />
+						<input
+							type="tel"
+							id="phone"
+							name="phone"
+							placeholder="+48 689340487" />
 					</div>
 
 					<div class="form-group">
@@ -147,7 +150,7 @@
 							<label for="city">Miasto</label>
 							<div
 								class="form-group-info-box"
-								data-content="Wpisz swoje miasto">
+								data-content="Wpisz nazwę miasta, w którym aktualnie mieszkasz lub w którym szukasz pracy. Jeśli planujesz przeprowadzkę, możesz wpisać miasto, do którego planujesz się przenieść. Przykład: 'Warszawa'.">
 								<img src="./dist/img/info.svg" alt="" class="form-group-info" />
 							</div>
 						</div>
@@ -159,7 +162,7 @@
 							<label for="postal-code">Kod pocztowy</label>
 							<div
 								class="form-group-info-box"
-								data-content="Podaj swoj kod pocztowy">
+								data-content="Podaj swój kod pocztowy w formacie XX-XXX. Jest to szczególnie ważne, jeśli pracodawca chce poznać dokładniejszą lokalizację kandydata. Przykład: '00-001'.">
 								<img src="./dist/img/info.svg" alt="" class="form-group-info" />
 							</div>
 						</div>
@@ -178,7 +181,7 @@
 						</label>
 						<div
 							class="form-group-info-box"
-							data-content="Opisz swoje doświadczenie zawodowe">
+							data-content="Napisz krótkie podsumowanie swojego doświadczenia zawodowego, kluczowych umiejętności oraz osiągnięć. Skup się na tym, co czyni Cię idealnym kandydatem na stanowisko, na które aplikujesz. Przykład: 'Jestem specjalistą ds. marketingu z 5-letnim doświadczeniem w zarządzaniu kampaniami online...'.">
 							<img src="./dist/img/info.svg" alt="" class="form-group-info" />
 						</div>
 					</div>
@@ -204,7 +207,8 @@
 						<textarea
 							id="summary"
 							name="summary"
-							placeholder="Jestem dynamicznym specjalistą ds. marketingu..."></textarea>
+							placeholder="Jestem dynamicznym specjalistą ds. marketingu..."
+							class="form-textarea"></textarea>
 					</div>
 				</div>
 
@@ -215,7 +219,7 @@
 						</label>
 						<div
 							class="form-group-info-box"
-							data-content="Opisz swoje skonczone szkoły">
+							data-content="Wprowadź informacje o swoim wykształceniu. Zawrzyj nazwę szkoły, kierunek studiów oraz rok ukończenia. Jeśli masz wiele poziomów wykształcenia, zacznij od najnowszego. Przykład: 'Uniwersytet Warszawski, Magisterium z ekonomii, 2020'.">
 							<img src="./dist/img/info.svg" alt="" class="form-group-info" />
 						</div>
 					</div>
@@ -252,7 +256,7 @@
 						</label>
 						<div
 							class="form-group-info-box"
-							data-content="Opisz swoje umiejętnosci">
+							data-content="Podaj swoje najważniejsze umiejętności, które są związane z stanowiskiem, na które aplikujesz. Unikaj ogólników i staraj się dopasować umiejętności do wymagań danej oferty pracy. Przykład: 'Zarządzanie projektami, Analityka danych, Negocjacje'.">
 							<img src="./dist/img/info.svg" alt="" class="form-group-info" />
 						</div>
 					</div>
@@ -289,7 +293,7 @@
 						</label>
 						<div
 							class="form-group-info-box"
-							data-content="Opisz kursy lub certyfikaty ktore posiadasz">
+							data-content="Opisz kursy i certyfikaty, które posiadasz. Warto wspomnieć o tych, które są bezpośrednio związane z ofertą pracy, np. certyfikaty branżowe. Przykład: 'Certyfikat Google Ads, Szkolenie z zarządzania projektami'.">
 							<img src="./dist/img/info.svg" alt="" class="form-group-info" />
 						</div>
 					</div>
@@ -326,7 +330,7 @@
 						</label>
 						<div
 							class="form-group-info-box"
-							data-content="Opisz znane ci jezyki obce">
+							data-content="Wpisz języki, którymi się posługujesz, oraz ich poziom biegłości, zgodnie z międzynarodowymi standardami, np. 'Angielski - C1, Hiszpański - B2'.">
 							<img src="./dist/img/info.svg" alt="" class="form-group-info" />
 						</div>
 					</div>
@@ -361,7 +365,9 @@
 						<label for="hobbies">
 							<h3 class="section-title">Hobby</h3>
 						</label>
-						<div class="form-group-info-box" data-content="Opisz swoje hobby">
+						<div
+							class="form-group-info-box"
+							data-content="Opisz swoje zainteresowania i pasje. Skup się na hobby, które mogą pokazać Twoje dodatkowe umiejętności lub cechy, które mogą być przydatne w pracy, np. 'Gra na gitarze, Fotografia, Bieganie'.">
 							<img src="./dist/img/info.svg" alt="" class="form-group-info" />
 						</div>
 					</div>
@@ -427,29 +433,35 @@
 						<div id="preview-postal-code" class="cv-section">
 							<p></p>
 						</div>
-						<div id="preview-summary" class="cv-section">
+						<div id="preview-summary" class="cv-section" style="display: none">
 							<h3>Podsumowanie Zawodowe</h3>
-							<p></p>
+							<p id="summary-preview"></p>
 						</div>
-						<div id="preview-education" class="cv-section">
+						<div
+							id="preview-education"
+							class="cv-section"
+							style="display: none">
 							<h3>Wykształcenie</h3>
-							<p></p>
+							<p id="education-preview"></p>
 						</div>
-						<div id="preview-skills" class="cv-section">
+						<div id="preview-skills" class="cv-section" style="display: none">
 							<h3>Umiejętności</h3>
-							<p></p>
+							<p id="skills-preview"></p>
 						</div>
-						<div id="preview-courses" class="cv-section">
+						<div id="preview-courses" class="cv-section" style="display: none">
 							<h3>Kursy i certyfikaty</h3>
-							<p></p>
+							<p id="courses-preview"></p>
 						</div>
-						<div id="preview-languages" class="cv-section">
+						<div
+							id="preview-languages"
+							class="cv-section"
+							style="display: none">
 							<h3>Języki</h3>
-							<p></p>
+							<p id="languages-preview"></p>
 						</div>
-						<div id="preview-hobbies" class="cv-section">
+						<div id="preview-hobbies" class="cv-section" style="display: none">
 							<h3>Hobby</h3>
-							<p></p>
+							<p id="hobbies-preview"></p>
 						</div>
 					</div>
 				</div>
@@ -457,8 +469,67 @@
 		</main>
 		<script src="./dist/js/session.min.js"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.min.js"></script>
-
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.72/pdfmake.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.72/vfs_fonts.js"></script>
 		<script src="./dist/js/secondstep.min.js"></script>
 		<script src="./dist/js/3steps.min.js"></script>
+		<script>
+			function updatePreview() {
+				const sections = [
+					{
+						textareaId: 'summary',
+						previewId: 'preview-summary',
+						previewTextId: 'summary-preview',
+					},
+					{
+						textareaId: 'education',
+						previewId: 'preview-education',
+						previewTextId: 'education-preview',
+					},
+					{
+						textareaId: 'skills',
+						previewId: 'preview-skills',
+						previewTextId: 'skills-preview',
+					},
+					{
+						textareaId: 'courses',
+						previewId: 'preview-courses',
+						previewTextId: 'courses-preview',
+					},
+					{
+						textareaId: 'languages',
+						previewId: 'preview-languages',
+						previewTextId: 'languages-preview',
+					},
+					{
+						textareaId: 'hobbies',
+						previewId: 'preview-hobbies',
+						previewTextId: 'hobbies-preview',
+					},
+				];
+
+				sections.forEach((section) => {
+					const textarea = document.getElementById(section.textareaId);
+					const preview = document.getElementById(section.previewId);
+					const previewText = document.getElementById(section.previewTextId);
+
+					if (textarea.value.trim() !== '') {
+						preview.style.display = 'block'; // Pokaż sekcję
+						previewText.textContent = textarea.value; // Ustaw tekst
+					} else {
+						preview.style.display = 'none'; // Ukryj sekcję
+						previewText.textContent = ''; // Wyczyść tekst
+					}
+				});
+			}
+
+			// Dodaj nasłuchiwacz zdarzeń do każdego textarea
+			document.querySelectorAll('textarea').forEach((textarea) => {
+				console.log(textarea);
+				textarea.addEventListener('input', updatePreview);
+			});
+		</script>
 	</body>
 </html>

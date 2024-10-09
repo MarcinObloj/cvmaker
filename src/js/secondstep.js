@@ -1,10 +1,28 @@
+
 function updatePreview(event) {
 	const inputId = event.target.id;
 	const inputValue = event.target.value;
 	const previewElement = document.getElementById('preview-' + inputId);
 
 	if (previewElement) {
-		previewElement.querySelector('p').innerHTML = inputValue;
+		const paragraph = previewElement.querySelector('p');
+		const header = previewElement.querySelector('h3');
+
+		// Aktualizuj treść akapitu
+		paragraph.innerHTML = inputValue;
+
+		// Sprawdź, czy akapit ma zawartość
+		if (inputValue.trim() === '') {
+			paragraph.style.display = 'none'; // Ukryj akapit
+			if (header) {
+				header.style.display = 'none'; // Ukryj nagłówek, jeśli jest
+			}
+		} else {
+			paragraph.style.display = 'block'; // Pokaż akapit
+			if (header) {
+				header.style.display = 'block'; // Pokaż nagłówek
+			}
+		}
 	}
 }
 
