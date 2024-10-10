@@ -37,11 +37,10 @@ const handleBurger = () => {
 	navMobile.classList.toggle('nav__mobile--active');
 	burgerBtn.classList.toggle('is-active');
 
-	// Sprawdzenie, czy menu jest aktywne, i odpowiednie ustawienie stylu dla body
 	if (navMobile.classList.contains('nav__mobile--active')) {
-		document.body.style.overflow = 'hidden'; // Zablokowanie przewijania
+		document.body.style.overflow = 'hidden';
 	} else {
-		document.body.style.overflow = ''; // Przywrócenie przewijania
+		document.body.style.overflow = '';
 	}
 };
 
@@ -76,38 +75,61 @@ cycleActiveClass();
 
 document.addEventListener('DOMContentLoaded', function () {
 	const sessionToken = localStorage.getItem('sessionToken');
-	console.log(sessionToken);
-	// Elementy nawigacji
+	const roleId = localStorage.getItem('roleId'); // Pobieramy roleId z
+	console.log(typeof roleId);
+
 	const loginLink = document.querySelector('.nav__desktop-item.login');
 	const registerLink = document.querySelector('.nav__desktop-item.register');
-	const userPanelLink = document.querySelector('.nav__desktop-item.user-panel');
+	const userPanelLink = document.querySelector(
+		'.nav__desktop-item.user-panel a'
+	);
 
-	// Jeśli token sesji istnieje
 	if (sessionToken) {
 		if (loginLink) loginLink.style.display = 'none';
 		if (registerLink) registerLink.style.display = 'none';
-		if (userPanelLink) userPanelLink.style.display = 'block';
+		if (userPanelLink) {
+			userPanelLink.parentElement.style.display = 'block';
+
+			if (roleId === '2') {
+				userPanelLink.textContent = 'Panel Admina';
+				userPanelLink.href = 'adminpanel.html';
+			} else {
+				userPanelLink.textContent = 'Panel użytkownika';
+				userPanelLink.href = 'userpanel.html';
+			}
+		}
 	} else {
 		if (loginLink) loginLink.style.display = 'block';
 		if (registerLink) registerLink.style.display = 'block';
-		if (userPanelLink) userPanelLink.style.display = 'none';
-	}
+		if (userPanelLink) userPanelLink.parentElement.style.display = 'none';
 
-	const mobileLoginLink = document.querySelector('.nav__mobile-item.login');
-	const mobileRegisterLink = document.querySelector(
-		'.nav__mobile-item.register'
-	);
-	const mobileUserPanelLink = document.querySelector(
-		'.nav__mobile-item.user-panel'
-	);
+		const mobileLoginLink = document.querySelector('.nav__mobile-item.login');
+		const mobileRegisterLink = document.querySelector(
+			'.nav__mobile-item.register'
+		);
+		const mobileUserPanelLink = document.querySelector(
+			'.nav__mobile-item.user-panel a'
+		);
 
-	if (sessionToken) {
-		if (mobileLoginLink) mobileLoginLink.style.display = 'none';
-		if (mobileRegisterLink) mobileRegisterLink.style.display = 'none';
-		if (mobileUserPanelLink) mobileUserPanelLink.style.display = 'block';
-	} else {
-		if (mobileLoginLink) mobileLoginLink.style.display = 'block';
-		if (mobileRegisterLink) mobileRegisterLink.style.display = 'block';
-		if (mobileUserPanelLink) mobileUserPanelLink.style.display = 'none';
+		if (sessionToken) {
+			if (mobileLoginLink) mobileLoginLink.style.display = 'none';
+			if (mobileRegisterLink) mobileRegisterLink.style.display = 'none';
+			if (mobileUserPanelLink) {
+				mobileUserPanelLink.parentElement.style.display = 'block'; //
+
+				if (roleId === 2) {
+					mobileUserPanelLink.textContent = 'Panel Admina';
+					mobileUserPanelLink.href = 'adminpanel.html';
+				} else {
+					mobileUserPanelLink.textContent = 'Panel użytkownika';
+					mobileUserPanelLink.href = 'userpanel.html';
+				}
+			}
+		} else {
+			if (mobileLoginLink) mobileLoginLink.style.display = 'block';
+			if (mobileRegisterLink) mobileRegisterLink.style.display = 'block';
+			if (mobileUserPanelLink)
+				mobileUserPanelLink.parentElement.style.display = 'none';
+		}
 	}
 });

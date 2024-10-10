@@ -10,7 +10,7 @@
 		<link rel="preconnect" href="https://fonts.googleapis.com" />
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 		<link
-			href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+			href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap"
 			rel="stylesheet" />
 		<link rel="stylesheet" href="./dist/css/adminpanel.min.css" />
 	</head>
@@ -53,85 +53,208 @@
 			<main class="main">
 				<h2 class="main-heading">Witaj,<span>Admin</span></h2>
 				<p class="main-info">
-					Poniżej znajdziesz wszystkie dotychczas stworzone CV przez ciebie
+					Poniżej znajdziesz wszystkich użytkowników zarejestrowanych na naszej
+					stronie
 				</p>
-				<div class="cv__boxes">
-					<div class="cv__box">
-						<img
-							src="./dist/img/cv-box.png"
-							alt="zdjecie stworzonego cv"
-							class="cv__box-photo" />
-						<button class="delete-btn">
-							<i class="fa-solid fa-trash"></i>
-						</button>
-						<button class="download-btn">
-							Download | <i class="fa-solid fa-file-pdf"></i>
-						</button>
-					</div>
-					<div class="cv__box">
-						<img
-							src="./dist/img/cv-box.png"
-							alt="zdjecie stworzonego cv"
-							class="cv__box-photo" />
-						<button class="delete-btn">
-							<i class="fa-solid fa-trash"></i>
-						</button>
-						<button class="download-btn">
-							Download | <i class="fa-solid fa-file-pdf"></i>
-						</button>
-					</div>
-					<div class="cv__box">
-						<img
-							src="./dist/img/cv-box.png"
-							alt="zdjecie stworzonego cv"
-							class="cv__box-photo" />
-						<button class="delete-btn">
-							<i class="fa-solid fa-trash"></i>
-						</button>
-						<button class="download-btn">
-							Download | <i class="fa-solid fa-file-pdf"></i>
-						</button>
-					</div>
-					<div class="cv__box">
-						<img
-							src="./dist/img/cv-box.png"
-							alt="zdjecie stworzonego cv"
-							class="cv__box-photo" />
-						<button class="delete-btn">
-							<i class="fa-solid fa-trash"></i>
-						</button>
-						<button class="download-btn">
-							Download | <i class="fa-solid fa-file-pdf"></i>
-						</button>
-					</div>
-					<div class="cv__box">
-						<img
-							src="./dist/img/cv-box.png"
-							alt="zdjecie stworzonego cv"
-							class="cv__box-photo" />
-						<button class="delete-btn">
-							<i class="fa-solid fa-trash"></i>
-						</button>
-						<button class="download-btn">
-							Download | <i class="fa-solid fa-file-pdf"></i>
-						</button>
-					</div>
-					<div class="cv__box">
-						<img
-							src="./dist/img/cv-box.png"
-							alt="zdjecie stworzonego cv"
-							class="cv__box-photo" />
-						<button class="delete-btn">
-							<i class="fa-solid fa-trash"></i>
-						</button>
-						<button class="download-btn">
-							Download | <i class="fa-solid fa-file-pdf"></i>
-						</button>
-					</div>
-				</div>
+				<table id="usersTable">
+					<thead>
+						<tr>
+							<th>ID</th>
+							<th>Nazwa Użytkownika</th>
+							<th>Email</th>
+							<th>Data Rejestracji</th>
+							<th>Akcje</th>
+						</tr>
+					</thead>
+					<tbody></tbody>
+				</table>
 			</main>
 		</div>
-		<script src="dist/js/main.min.js"></script>
-		<script src="./dist/js/session.min.js"></script>
+
+		<script>
+			document.addEventListener('DOMContentLoaded', function () {
+				const token = localStorage.getItem('sessionToken'); // Pobierz token sesji
+
+				fetch('http://localhost:8080/api/users', {
+					method: 'GET',
+					headers: {
+						'Content-Type': 'application/json',
+						Authorization: `Bearer ${token}`,
+					},
+				})
+					.then((response) => {
+						if (!response.ok) {
+							throw new Error('Nie udało się pobrać danych użytkowników');
+						}
+						return response.json();
+					})
+					.then((users) => {
+						const tableBody = document
+							.getElementById('usersTable')
+							.querySelector('tbody');
+
+						users.forEach((user) => {
+							const row = document.createElement('tr');
+							row.setAttribute('data-user-id', user.id);
+							row.innerHTML = `
+                <td>${user.id}</td>
+                <td>${user.username}</td>
+                <td>${user.email}</td>
+                <td>${new Date(user.createdAt).toLocaleDateString()}</td>
+                <td>
+                    <button class="view-cv-button" data-id="${
+											user.id
+										}">Zobacz CV</button>
+                    <button class="delete-button" data-id="${
+											user.id
+										}">Usuń</button>
+                </td>
+            `;
+							tableBody.appendChild(row);
+
+							const viewCvButton = row.querySelector('.view-cv-button');
+							viewCvButton.addEventListener('click', function (event) {
+								event.stopPropagation();
+								const userId = this.getAttribute('data-id');
+								fetchUserCvs(userId);
+							});
+						});
+
+						const deleteButtons = document.querySelectorAll('.delete-button');
+						deleteButtons.forEach((button) => {
+							button.addEventListener('click', function (event) {
+								event.stopPropagation();
+								const userId = this.getAttribute('data-id');
+								deleteUser(userId);
+							});
+						});
+					})
+					.catch((error) => {
+						console.error(error);
+						alert('Wystąpił błąd podczas pobierania danych użytkowników.');
+					});
+			});
+
+			async function fetchUserCvs(userId) {
+				try {
+					const token = localStorage.getItem('sessionToken'); // Pobierz token sesji
+					const response = await fetch(
+						`http://localhost:8080/api/cvfile/list/${userId}`,
+						{
+							method: 'GET',
+							headers: {
+								'Content-Type': 'application/json',
+								Authorization: `Bearer ${token}`,
+							},
+						}
+					);
+
+					if (!response.ok) {
+						throw new Error('Nie udało się pobrać CV dla użytkownika');
+					}
+
+					const cvFiles = await response.json();
+					displayCvs(cvFiles, userId);
+				} catch (error) {
+					console.error('Error fetching CVs:', error);
+					alert('Nie znaleziono CV dla tego użytkownika');
+				}
+			}
+
+			function displayCvs(cvFiles, userId) {
+				let content = `<div class="modal">
+        <h2>CV Użytkownika ${userId}</h2>
+        <ul>`;
+
+				if (cvFiles.length > 0) {
+					cvFiles.forEach((cv) => {
+						content += `<li>
+                <span>${cv.fileName} - ${new Date(
+							cv.createdAt
+						).toLocaleDateString()}</span>
+                <a href="${cv.downloadUrl}" target="_blank">Pobierz</a>
+                <button class="delete-cv-button" data-id="${
+									cv.id
+								}" data-user-id="${userId}">Usuń</button>
+            </li>`;
+					});
+				} else {
+					content += '<li>Brak CV dla tego użytkownika.</li>';
+				}
+
+				content += `</ul>
+        <button class="close-button">Zamknij</button>
+    </div>`;
+
+				const modal = document.createElement('div');
+				modal.innerHTML = content;
+				document.body.appendChild(modal);
+
+				const closeButton = modal.querySelector('.close-button');
+				closeButton.onclick = () => {
+					document.body.removeChild(modal);
+				};
+
+				const deleteCvButtons = modal.querySelectorAll('.delete-cv-button');
+				deleteCvButtons.forEach((button) => {
+					button.addEventListener('click', function (event) {
+						const cvId = this.getAttribute('data-id');
+						const userId = this.getAttribute('data-user-id');
+						deleteCv(cvId, userId);
+					});
+				});
+			}
+
+			function deleteCv(cvId, userId) {
+				const token = localStorage.getItem('sessionToken');
+
+				if (confirm('Czy na pewno chcesz usunąć to CV?')) {
+					fetch(`http://localhost:8080/api/cvfile/delete/${cvId}`, {
+						method: 'DELETE',
+						headers: {
+							'Content-Type': 'application/json',
+							Authorization: `Bearer ${token}`,
+						},
+					})
+						.then((response) => {
+							if (!response.ok) {
+								throw new Error('Nie udało się usunąć CV');
+							}
+							alert('CV zostało usunięte.');
+
+							fetchUserCvs(userId);
+						})
+						.catch((error) => {
+							console.error(error);
+							alert('Wystąpił błąd podczas usuwania CV.');
+						});
+				}
+			}
+
+			function deleteUser(userId) {
+				const token = localStorage.getItem('sessionToken');
+
+				if (confirm('Czy na pewno chcesz usunąć tego użytkownika?')) {
+					fetch(`http://localhost:8080/api/users/${userId}`, {
+						method: 'DELETE',
+						headers: {
+							'Content-Type': 'application/json',
+							Authorization: `Bearer ${token}`,
+						},
+					})
+						.then((response) => {
+							if (!response.ok) {
+								throw new Error('Nie udało się usunąć użytkownika');
+							}
+							alert('Użytkownik został usunięty.');
+							location.reload();
+						})
+						.catch((error) => {
+							console.error(error);
+							alert('Wystąpił błąd podczas usuwania użytkownika.');
+						});
+				}
+			}
+		</script>
 	</body>
 </html>
